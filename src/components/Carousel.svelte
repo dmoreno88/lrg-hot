@@ -70,6 +70,11 @@
             </Link>
                
       </div>
+
+      <div class="swiper-slide">
+         <img loading="lazy" class="clickable" alt="LV" src="./build/assets/carousel/location_validation.png" />
+      </div>
+
        <div class="swiper-slide">
                 <img loading="lazy" alt="Training"
         src="./build/assets/carousel/training_banner.png" />
