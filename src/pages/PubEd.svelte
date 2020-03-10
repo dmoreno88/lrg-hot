@@ -160,7 +160,7 @@
                     <p>Promotional item distribution is a major part of educating the public on how to correctly use the 9-1-1 system. During our promotional events, our mascots (Cell Phone Sally, Kid Friendly Keith, and Josh) have become a BIG part of our interaction with the early youth.
                     </p>
                     <p>
-                        Using multi-media, we demonstrate the proper way to call 9-1-1 and what is considered a 9-1-1 emergency call. 
+                        We promote and educate the public on how to correctly use the 9-1-1 system. By using multi-media, we demonstrate the proper way to call 9-1-1 and what is considered a 9-1-1 emergency call. 
                     </p>
                     <p>Schedule your event today!</p>
                 </b>
@@ -183,7 +183,7 @@
             </div>
 
                     <div id="btnEvent">
-                    <button on:click="{()=>{window.app.navigate('/EventRequest')}}">EVENT REQUEST</button>
+                    <button on:click="{()=>{console.log("EVENT")}}">EVENT REQUEST</button>
                     </div>
             </div>
             <div></div>
