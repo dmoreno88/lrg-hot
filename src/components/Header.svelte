@@ -6,7 +6,7 @@
   function onShowMenu() {
    // document.getElementById("mySidenav").style.width = "250px";
 
-    mobileNav.style.width = "100%";
+    mobileNav.style.width = "80%";
   }
 
   function closeNav() {
@@ -127,24 +127,55 @@ img{
   min-height: 968px;
   transition: 0.7s;
   overflow-x: hidden;
+  color: #fff;
   
 }
 
 .mobileNav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 25px;
   color: #fff;
-  display: block;
   transition: 0.3s;
 }
 
 .mobileNav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
   font-size: 48px;
-  margin-left: 50px;
+  margin-bottom: 40px;
+}
+
+.td-mobile-wrap{
+   display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+}
+
+.td-mobile-content{
+  padding: 20px 20px 0;
+}
+
+.td-mobile-content ul{
+  list-style: none;
+  margin:0;
+  font-size: 21px;
+   padding:0;
+}
+
+.td-mobile-content li {
+   float: none;
+  margin-left: 0;
+  padding: 12px 30px 12px 12px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.td-mobile-content li:hover{
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -233,7 +264,20 @@ img{
 
     </div>
     <div bind:this={mobileNav} class="mobileNav">
-        <a href="javascript:void(0)" class="closebtn" on:click|preventDefault={closeNav} >&times;</a>
+        <div class="td-mobile-wrap">
+           <a href="javascript:void(0)" class="closebtn" on:click|preventDefault={closeNav} >&times;</a>
+        </div>
+        
+        <div class="td-mobile-content">
+          <ul>
+            <li>HOME</li>
+            <li>PUBLIC EDUCATION</li>
+            <li>SERVICES</li>
+            <li>TRAININGS</li>
+            <li>ABOUT US</li>
+            <li>CONTACT</li>
+          </ul>
+        </div>
     </div>
 
 </div>
