@@ -1,14 +1,10 @@
 <script>
-    import {onMount} from "svelte";
+    import Carousel from "../components/Carousel.svelte";
     import RoundCard from "../components/RoundCard.svelte";
     import Header from "../components/Header.svelte";
 	import Footer from "../components/Footer.svelte";
     import Wrapper from "../components/Wrapper.svelte";
-    
-    onMount(() => {
-
-    });
-
+ 
 </script>
 <style>
     .flex-main{
@@ -23,25 +19,29 @@
         border: 1px solid #ccc!important
     }
 
-
-     img {
-    max-width: 98%;
-    max-height: 100%;
-    border: 1px solid #ccc!important;
-    padding: 4px;
+    .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
-    .center {
-        text-align: center;
-    }
+.table {
+    display: table;
+}
+
+.table thead, .table tfoot, .table .thead, .table .tfoot {
+    border-bottom: 4px solid #e4e4e4;
+}
+
+.table.striped tbody tr:nth-child(odd),
+.table.striped .tbody .tr:nth-child(odd) {
+  background: #f8f8f8;
+}
 </style>
 <Header />
 <Wrapper>
     <div class="flex-main">
-        <div class="center">
-            <img loading="lazy" class="clickable" alt="LV" src="./build/assets/carousel/location_validation.png" />
-        </div>
-        
+        <Carousel />
         <div id="table">
             <table class="table">
                     <thead>
