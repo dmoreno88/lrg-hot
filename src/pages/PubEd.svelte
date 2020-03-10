@@ -68,7 +68,7 @@
     }
     .imgResponsive {
         width: 590px;
-        height: 350px;
+        height: 375px;
     }
     .imgResponsive:hover {
         cursor: pointer;
@@ -89,9 +89,9 @@
     }
     .bannerMsg {
         color: #B39945;
-        padding: 18px;
+        padding: 15px;
         font-weight: bold;
-        font-size: 1.4rem;
+        font-size: 1.29rem;
     }
 
     #innerComms2{
@@ -107,7 +107,7 @@
     }
     #imgCon2 {
         max-width: 68vh;
-        height: 200px; 
+        height: 210px; 
         border: 0px solid #ccc!important;
         padding-right: 4px;   
 
@@ -154,13 +154,10 @@
         <h1><b>Public Education </b><i > Program</i></h1>
         <div class="grid-container-3">
             <div><b>
-                    <p>
-                        We promote and educate the public on how to correctly use the 9-1-1 system.
-                    </p>
+                    
                     <p>We provide presentations to our local cities, school, daycares, Emergency Medical Services (EMS), Fire and Police Departments within Hidalgo and Willacy County. 
-
-                    </p>
-                    <p>Promotional item distribution is a major part of our educational program. During our promotional events, our mascots (Cell Phone Sally, Kid Friendly Keith, and Josh) have become a BIG part of our interaction with the early youth.
+                    
+                    <p>Promotional item distribution is a major part of educating the public on how to correctly use the 9-1-1 system. During our promotional events, our mascots (Cell Phone Sally, Kid Friendly Keith, and Josh) have become a BIG part of our interaction with the early youth.
                     </p>
                     <p>
                         Using multi-media, we demonstrate the proper way to call 9-1-1 and what is considered a 9-1-1 emergency call. 
@@ -197,36 +194,31 @@
                
                 <div class="flex-container"><b>
             <h1><i>Know WHEN to call 9-1-1.</i></h1>
-            <b><p>9-1-1 is for emergencies only. You
-                 should only be dialing 9-1-1 if someone is hurt or in danger, or
+            <b><p>9-1-1 is for emergencies only. You should only be dialing 9-1-1 if someone is hurt or in danger, or
                   if you are in immediate need of police, fire, or medical assistance.
-                   If you aren’t sure if your situation is an emergency, you should 
-                   err on the side of safety and call 9-1-1 and let the expert who 
-                   answers your call make the decision whether to send help or not.</p>
+               </p>
+
+        <p>
+            Knowing where you are is the most important information you can provide as a 9-1-1 caller, so be sure to be aware of 
+            your surroundings. Make a real effort to be as detailed as possible.
+        </p>
+
             </b>
             </div>
         </div>
         
 
 <div class="flex-container">
+            
+
             <h1><i>Know the capabilities of the device you are using.</i></h1>
-            <b><p>9-1-1 can be contacted from pretty much every device that can 
+            <b><p>9-1-1 can be contacted from any device that can 
             make phone calls (traditional landline, cell, VoIP), but the callback 
             and location information that accompanies your call to the 9-1-1 center 
             can vary drastically amongst technologies and between geographic regions. 
-            9-1-1 and telecommunications professionals are hard at work to make sure 
-            9-1-1 works the same on all devices in the future, but until then it is your 
-            job to be knowledgeable about benefits and limitations associated with various 
-            technologies. Contact your service provider(s) for more information.</p>
+            LRGVDC 9-1-1 and telecommunications professionals are hard at work to make sure 
+            9-1-1 works the same on all devices.</p>
 
-            <p>
-            Know where you are. This is probably the most important information you can provide 
-            as a 9-1-1 caller, so try to be aware of your surroundings. Make a real effort to be 
-            as detailed as possible. If you are outside and don’t know the street address, take a 
-            look around and try to find landmarks or cross streets. If you are inside a large building 
-            or one with multiple levels, you can help emergency services by letting them know which floor 
-            you are on, which apartment you are in, etc.
-            </p>
             </b>
              
             
@@ -243,11 +235,16 @@
                  <div>
                  
             <h1><i><center>Kari's Law</center></i></h1>
-                    <b><p> 
+                    <b>
+                        <p> On May 15, 2015, Governor Abbott signed <a href="https://www.capitol.state.tx.us/tlodocs/84R/billtext/html/SB00788F.htm">Senate Bill 788 </a>(Texas Kari's Law). The law represents the culmination of 
+                        efforts in the aftermath of the murder of Kari Hunt in a motel room in Marshall, Texas. Ms. Hunt’s 9-year-old daughter 
+                        tried to call 9-1-1 for help four times from the motel room phone. 
+                        
+                        <p> The call never went through because she did not know 
+                        to dial “9” for an outbound line before dialing “9-1-1.” On March 1, 2016, Commission on State Emergency Communications 
+                        <a href="https://texreg.sos.state.tx.us/public/readtac$ext.TacPage?sl=R&app=9&p_dir=&p_rloc=&p_tloc=&p_ploc=&pg=1&p_tac=&ti=1&pt=12&ch=251&rl=16">Rule 251.16 </a>adopted to implement Texas Kari’s Law went into effect. 
                         Passed on February 16, 2018, Kari's Law requires multiple telephone line systems to have direct access to 9-1-1 without 
                         having to press an additional digit such as a "9" or a "1" to make an outgoing call. 
-                        <p>The law specifically states, "An act to amend the Communications Act of 1934 to require multi-line telephone systems to have a configuration that permits 
-                        users to directly initiate a call to 9-1-1 without dialing any additional digit, code, prefix, or post-fix, and for other purposes."
                     </p></b>
                 
 
@@ -255,9 +252,10 @@
 
 
                   <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
-                        The LRGVDC 9-1-1 Addressing Department is responsible for the assurance, maintenance, and administration of all geographic information pertinent to Hidalgo
-                         and Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data. We work in partnership with the United States Postal Service (USPS),
-                          telephone companies and others agenices within the region to ensure the 9-1-1 physical address is established.
+                        The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies and others agenices within the region to ensure 
+                        the 9-1-1 physical address is established. <br><br>
+                        Our responsibility consist of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo
+                         and Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data. 
 
                   </div>
                 
@@ -280,9 +278,10 @@
                     {/if}                    
                 </div>
             
-                    <div class="bannerMsg"><b>
-                        Text-to-911 is the ability to send a text message to reach 911 emergency call takers from your mobile phone or device. However, because text-to-911 is currently only available in certain locations, you should always make a voice call to contact 911 during an emergency whenever possible.
-                        <br>Visit: <a target="_blank" href="https://www.congress.gov/bill/115th-congress/house-bill/582/text">https://www.congress.gov/bill/115th-congress/house-bill/582/text</a>
+                    <div class="bannerMsg"><h2><i><center>Text-to-911 is availble in the <br>Lower Rio Grande Valley</center></i></h2>
+                         In 2014, the four largest wireless service providers (AT&T, Sprint, T-Mobile and Verizon), in conjunction with the Association of Public Safety 
+                         Communication Officials (APCO) and the National Emergency Number Association (NENA), agreed to provide all 911 call centers with the ability to receive texts. 
+                        
                     </div>        
         
         </div>
