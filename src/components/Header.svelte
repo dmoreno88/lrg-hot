@@ -7,16 +7,15 @@
 
 .wrapper{
   
-  height: 64px;
+  height: 65px;
   background-color: #fff;
-  border-bottom: 5px solid #ddd;
-  border-top: 5px solid #D9B13B;
+  border-bottom: 10px solid #ddd;
+  border-top: 10px solid #D9B13B;
 
 }
 .navbar {
   display: flex;
   overflow: hidden;
-  
   align-items: center;
   justify-content: center;
   font-weight: 520;
@@ -34,7 +33,7 @@
 }
 img{
   max-width: 100%;
-  width: 108px;
+  width: 175px;
   z-index: 99999;
   
 }
@@ -47,9 +46,9 @@ img{
 
 .navbar a {
   float: left;
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
-  padding: 14px 16px;
+  padding: 15px 18px;
   text-decoration: none;
   color: rgba(20, 57, 117, 1) !important;
 }

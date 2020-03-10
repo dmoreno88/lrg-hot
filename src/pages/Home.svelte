@@ -97,14 +97,14 @@
     }
 
     #callVolumeTitle{
-        margin-top: 60px;
+        margin-top: 80px;
         margin-bottom: 60px;
     }
 
     hr.type_1 {
         border: 0;
         height: 195px;
-        background-image: url('/build/assets/logo/logo_line.break2.png');
+        background-image: url('/build/assets/logo/logo_line.break3.png');
         background-repeat: no-repeat;
         background-size: 1150px;
         background-position: center;
@@ -169,7 +169,7 @@
                 <h1>Address Requests</h1>
                
                 <div class="flex">
-                    <RoundCard incrementValue={933} option="1" p={["Above is the total address requests", "completed since 2010 "]} title="Completed Requests" />
+                    <RoundCard incrementValue={699} option="1" p={["Above is the total address requests", "completed since 2010 "]} title="Completed Requests" />
                     <RoundCard  option="2"
 
                     p={["Above is our current address requests", "completed for this month. "]}
