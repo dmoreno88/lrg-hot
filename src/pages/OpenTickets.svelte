@@ -7,7 +7,32 @@
     
     onMount(() => {
 
+        //Lazy LOADING CSS IMPORTANT FOR TABLE..
+        lazyLoadingCSS();
     });
+
+    function lazyLoadingCSS() {
+        const links = document.getElementsByTagName("link");
+        const size = links.length;
+        let found = false;
+        for(var i = 0; i < size; i++){
+            
+            if(links[i].rel == "stylesheet" && links[i].href.indexOf("metro-table.css") > 0){
+               
+                found = true;
+                break;
+            }
+        }
+
+        if(!found) {
+            const head = document.getElementsByTagName('head')[0];
+            const style = document.createElement('link');
+            style.rel = 'stylesheet';
+            style.href = '/metro-table.css';
+
+            head.appendChild(style);
+        }
+    }
 
 </script>
 <style>
