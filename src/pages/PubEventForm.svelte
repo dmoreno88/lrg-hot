@@ -5,7 +5,7 @@
     import NoteEventRequest from "../components/PubEdForm/NoteEventRequest.svelte";
     let notes = [
         "All event requests must be submitted by 14 business days prior to your event to be considered.",
-        "Requests not meeting the 14 days requirement will be considered by LRGVDC E-Comms.",
+        "Requests not meeting the 14 days requirement will be reviewed by LRGVDC E-Comms.",
         "If you are experiencing problems, please call us directly at (956) 682-3481 ext. 124"
 
     ]
@@ -13,12 +13,11 @@
 <style>
     .grid-container {
         display: grid;
-        height: 90vh;
+        height: auto;
         grid-template-columns: auto auto auto;
        
     }
 h1{
-    text-decoration: underline;
     color: #263E70;
     text-align: center;
     margin-bottom: 8px;
