@@ -64,6 +64,7 @@
     }
     .grid-container-2{
         display: grid;
+      
         grid-template-columns: 50% 50%;
     }
     .imgResponsive {
@@ -116,6 +117,11 @@
    .title2 {
 
        color: red !important;
+   }
+
+   .asset-video{
+           width: 590px;
+    height: 375px;
    }
 
 
@@ -223,7 +229,7 @@
              
             
             <div class="grid-container-2">
-                   <div>
+                   <div class="asset-video">
  
                         {#if karisVideo}
                             <VideoPlayer on:click="{()=>{karisVideo = false;}}"  src="{karisLink}" />
@@ -232,23 +238,23 @@
                         {/if}
                     </div>
 
-                 <div>
+                    <div>
                  
-            <h1><i><center>Kari's Law</center></i></h1>
-                    <b>
-                        <p> On May 15, 2015, Governor Abbott signed <a href="https://www.capitol.state.tx.us/tlodocs/84R/billtext/html/SB00788F.htm">Senate Bill 788 </a>(Texas Kari's Law). The law represents the culmination of 
-                        efforts in the aftermath of the murder of Kari Hunt in a motel room in Marshall, Texas. Ms. Hunt’s 9-year-old daughter 
-                        tried to call 9-1-1 for help four times from the motel room phone. 
-                        
-                        <p> The call never went through because she did not know 
-                        to dial “9” for an outbound line before dialing “9-1-1.” On March 1, 2016, Commission on State Emergency Communications 
-                        <a href="https://texreg.sos.state.tx.us/public/readtac$ext.TacPage?sl=R&app=9&p_dir=&p_rloc=&p_tloc=&p_ploc=&pg=1&p_tac=&ti=1&pt=12&ch=251&rl=16">Rule 251.16 </a>adopted to implement Texas Kari’s Law went into effect. 
-                        Passed on February 16, 2018, Kari's Law requires multiple telephone line systems to have direct access to 9-1-1 without 
-                        having to press an additional digit such as a "9" or a "1" to make an outgoing call. 
-                    </p></b>
+                     <h1><i><center>Kari's Law</center></i></h1>
+                        <b>
+                            <p> On May 15, 2015, Governor Abbott signed <a href="https://www.capitol.state.tx.us/tlodocs/84R/billtext/html/SB00788F.htm">Senate Bill 788 </a>(Texas Kari's Law). The law represents the culmination of 
+                            efforts in the aftermath of the murder of Kari Hunt in a motel room in Marshall, Texas. Ms. Hunt’s 9-year-old daughter 
+                            tried to call 9-1-1 for help four times from the motel room phone. 
+                            
+                            <p> The call never went through because she did not know 
+                            to dial “9” for an outbound line before dialing “9-1-1.” On March 1, 2016, Commission on State Emergency Communications 
+                            <a href="https://texreg.sos.state.tx.us/public/readtac$ext.TacPage?sl=R&app=9&p_dir=&p_rloc=&p_tloc=&p_ploc=&pg=1&p_tac=&ti=1&pt=12&ch=251&rl=16">Rule 251.16 </a>adopted to implement Texas Kari’s Law went into effect. 
+                            Passed on February 16, 2018, Kari's Law requires multiple telephone line systems to have direct access to 9-1-1 without 
+                            having to press an additional digit such as a "9" or a "1" to make an outgoing call. 
+                        </p></b>
                 
 
-                </div>
+                    </div>
 
 
                   <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
@@ -259,7 +265,7 @@
 
                   </div>
                 
-                <div>
+                <div class="asset-video">
                      {#if lvVideo}
                             <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
                     {:else}
@@ -268,9 +274,9 @@
                 
                 </div>             
                 
-        <div class="grid-container-2">
+                <div >
         
-                                                      
+                                     
                     {#if txtVideo}
                         <VideoPlayer on:click="{()=>{txtVideo = false;}}"  src="{txtLink}" />
                     {:else}
