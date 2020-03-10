@@ -7,10 +7,10 @@
 
 .wrapper{
   
-  height: 65px;
+  height: 60px;
   background-color: #fff;
-  border-bottom: 10px solid #ddd;
-  border-top: 10px solid #D9B13B;
+  border-bottom: 11px solid #ddd;
+  border-top: 11px solid #D9B13B;
 
 }
 .navbar {
@@ -33,7 +33,7 @@
 }
 img{
   max-width: 100%;
-  width: 175px;
+  width: 121px;
   z-index: 99999;
   
 }
@@ -46,7 +46,7 @@ img{
 
 .navbar a {
   float: left;
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
   padding: 15px 18px;
   text-decoration: none;
@@ -59,12 +59,12 @@ img{
 }
 
 .dropdown .dropbtn {
-  font-size: 20px; 
+  font-size: 25px; 
   font-weight: 520;
   border: none;
   outline: none;
   color: rgba(20, 57, 117, 1) !important;
-  padding: 14px 16px;
+  padding: 15px 18px;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
@@ -89,7 +89,7 @@ img{
 
 .dropdown-content a {
   float: none;
-  padding: 12px 16px;
+  padding: 15px 18px;
   text-decoration: none;
   display: block;
   text-align: left;
