@@ -14,11 +14,11 @@
         z-index: 3;
          left: 50%;
         top: 50%;
-        margin-left: -250px;
-        margin-top: -200px;
+        margin-left: -310px;
+        margin-top: -190px;
         bottom: 10px;
-        width: 540px;
-        height: 400px;
+        width: 620px;
+        height: 380px;
         background: #F5F5F5;
         border-radius: 20px;
         box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
@@ -63,10 +63,10 @@ ol{
 .wrapper {
     position: absolute;
     display: inline-block;
-    width: 3.4em;
-    height: 3.4em;
+    width: 3.5em;
+    height: 3.5em;
     z-index: 4;
-    line-height: 3.4em;
+    line-height: 3.5em;
     background: #2E3257;
     border-radius: 50%;
     text-align: center;
@@ -93,7 +93,7 @@ ol{
             {/each}
             <li>E-mail
                 <a href="mailto:amorales@lrgvdc911.org">Ariana Morales</a>
-                or 
+                /
                 <a href="mailto:dgutierrez@lrgvdc911.org">Daniel Gutierrez</a>
                 for more information regarding Public Education.
             </li>

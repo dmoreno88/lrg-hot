@@ -36,7 +36,8 @@
     position: relative;
     left: 50%;
     margin-left: -40%;
-    width: 80%; height: auto; border-radius: 20px;background: #F5F5F5;
+    width: 80%; height: auto; border-radius: 20px;
+    background: #fff;
     margin-bottom: 14px;
   }
   ul.horizontal-list {

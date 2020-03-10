@@ -121,7 +121,7 @@ img{
   }
 }
 
-@media only screen and (max-width: 1034px) {
+@media only screen and (max-width: 1196px) {
      .wrapper {
       display: grid;
       grid-template-columns: 88% 12%;
@@ -173,8 +173,9 @@ img{
 
           <div class="dropdown"><button class="dropbtn">SERVICES </button>
           <div class="dropdown-content">
-              <a href="Serv1">Link 1</a>
-              <a href="Serv2">Link 2</a>
+              <a href="AddressRequest">Address Request</a>
+              <a href="PubEdRequest">Public Education Request</a>
+              <a href="RecorderRequest">Recorder Request</a>
             </div>
           </div> 
             <div class="dropdown"><button class="dropbtn">TRAININGS </button>

@@ -186,7 +186,7 @@
             </div>
 
                     <div id="btnEvent">
-                    <button on:click="{()=>{console.log("EVENT")}}">EVENT REQUEST</button>
+                    <button on:click="{()=>{window.app.navigate('/EventRequest')}}">EVENT REQUEST</button>
                     </div>
             </div>
             <div></div>
