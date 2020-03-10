@@ -1,20 +1,23 @@
 <script>
+     import Header from "../components/Header.svelte";
+	import Footer from "../components/Footer.svelte";
     import EventRequest from "../components/PubEdForm/EventRequest.svelte";
     import NoteEventRequest from "../components/PubEdForm/NoteEventRequest.svelte";
-    let notes = ["All Public Event Requests must be submitted to LRGVDC at a minimum of 14 business day prior to your event.",
-        "Requests between the 14 day period will not be accepted by the online system.",
-        "If you are experiencing problems with your online request please call us directly at (956) 682-3481 ext. 150"
+    let notes = [
+        "All event requests must be submitted by 14 business days prior to your event to be considered.",
+        "Requests not meeting the 14 days requirement will be reviewed by LRGVDC E-Comms.",
+        "If you are experiencing problems, please call us directly at (956) 682-3481 ext. 124"
+
     ]
 </script>
 <style>
     .grid-container {
         display: grid;
-        height: 90%;
+        height: auto;
         grid-template-columns: auto auto auto;
        
     }
 h1{
-    text-decoration: underline;
     color: #263E70;
     text-align: center;
     margin-bottom: 8px;
@@ -30,7 +33,7 @@ h3{
     height: 90vh; 
 }
 </style>
-
+<Header />
 <div class="grid-container">
     <div class="grid-item">
        
@@ -45,3 +48,4 @@ h3{
         
     </div>
 </div>
+<Footer />

@@ -36,11 +36,12 @@
     position: relative;
     left: 50%;
     margin-left: -40%;
-    width: 80%; height: auto; border-radius: 20px;background: #F5F5F5;
+    width: 80%; height: auto; border-radius: 20px;
+    background: #fff;
     margin-bottom: 14px;
   }
   ul.horizontal-list {
-    min-width: 696px;
+     min-width: 696px;
     list-style: none;
 	
 	}
@@ -78,6 +79,29 @@
     {
       text-align: center;
     }
+
+    @media screen and (max-width: 1590px) {
+       ul.horizontal-list {
+        
+         display:flex;
+       }
+    }
+
+     @media screen and (max-width: 880px) {
+       ul.horizontal-list{
+         flex-direction: column;
+         padding: 10px;
+         width: 300px;
+         margin: 0 auto;
+       }
+
+       	ul.horizontal-list li {
+           padding: 10px;
+
+
+         }
+     }
+
 </style>
 <div id="form">
                  <div style="height: 20px; width: 100%; border-top-left-radius: 20px; border-top-right-radius:20px;background: #2E3257; ">
@@ -103,7 +127,7 @@
                               <div class="group">
                                   <label>From Date:</label>
                                   <input bind:value={from_date} type="text" />
-                                  <small id="dateHelp" class="form-text text-muted">The event needs to be 14 business day or more in advance.</small>
+                                  
                               </div>
 
                               <div class="group">
@@ -262,7 +286,7 @@
                                      <!-- content here -->
                                      <label>{fileName}</label>
                                   {:else}
-                                     <label>Please attach event flier. (Only PDF)</label>
+                                     <label>Please attach event flier. (PDF, PNG, JPG only)</label>
                                      <input  accept="application/pdf" on:change={handleFile} type="file" />
                                   {/if}
                                   

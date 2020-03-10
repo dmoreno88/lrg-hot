@@ -1,7 +1,6 @@
 
 <script>
      import {onMount} from "svelte";
-     import { Link } from '../lib/main';
      import Swiper from "swiper";
 
      let controll;
@@ -63,11 +62,9 @@
 
      <div class="swiper-slide">
                 
-            <Link href="#PubEdRequest">
-                 <img loading="lazy"  class="clickable" alt="PUB"
+            
+                 <img on:click="{()=>{window.app.navigate('/EventRequest')}}" loading="lazy"  class="clickable" alt="PUB"
         src="./build/assets/carousel/event_banner.png" />
-
-            </Link>
                
       </div>
 

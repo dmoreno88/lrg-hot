@@ -1,6 +1,17 @@
 <script>
 
   console.log(window.app);
+  let mobileNav;
+
+  function onShowMenu() {
+   // document.getElementById("mySidenav").style.width = "250px";
+
+    mobileNav.style.width = "80%";
+  }
+
+  function closeNav() {
+    mobileNav.style.width = "0";
+  }
 </script>
 
 <style> 
@@ -105,6 +116,68 @@ img{
   cursor: pointer;
 }
 
+.mobileNav {
+  position: absolute;
+  z-index: 4;
+  width: 0;
+  top: 0;
+  right: 0;
+  background:rgba(15, 82, 186, .72);
+  height: 100%;
+  min-height: 968px;
+  transition: 0.7s;
+  overflow-x: hidden;
+  color: #fff;
+  
+}
+
+.mobileNav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.mobileNav .closebtn {
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+.td-mobile-wrap{
+   display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+}
+
+.td-mobile-content{
+  padding: 20px 20px 0;
+}
+
+.td-mobile-content ul{
+  list-style: none;
+  margin:0;
+  font-size: 21px;
+   padding:0;
+}
+
+.td-mobile-content li {
+   float: none;
+  margin-left: 0;
+  padding: 12px 30px 12px 12px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.td-mobile-content li:hover{
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 1200px) {
   .logo{
     position: relative;
@@ -121,7 +194,7 @@ img{
   }
 }
 
-@media only screen and (max-width: 1034px) {
+@media only screen and (max-width: 1196px) {
      .wrapper {
       display: grid;
       grid-template-columns: 88% 12%;
@@ -139,6 +212,7 @@ img{
       align-items: center;
      
     }
+
 
     .btnnav > button:hover{
        cursor: pointer;
@@ -160,8 +234,8 @@ img{
     <div class="logo">
         <img alt="logo"  src="/build/assets/logo/public_safety_logo.webp" />
     </div>
-    <div class="btnnav">
-      <button>
+    <div on:click={onShowMenu} class="btnnav">
+      <button on:tap={onShowMenu} on:click={onShowMenu}>
         <span class="mif-menu"></span>
       </button>
     </div>
@@ -173,8 +247,9 @@ img{
 
           <div class="dropdown"><button class="dropbtn">SERVICES </button>
           <div class="dropdown-content">
-              <a href="Serv1">Link 1</a>
-              <a href="Serv2">Link 2</a>
+              <a href="AddressRequest">Address Request</a>
+              <a href="PubEdRequest">Public Education Request</a>
+              <a href="RecorderRequest">Recorder Request</a>
             </div>
           </div> 
             <div class="dropdown"><button class="dropbtn">TRAININGS </button>
@@ -187,6 +262,22 @@ img{
           <a on:click|preventDefault="{()=>{window.app.navigate('/AboutUs')}}" href="#AboutUs">ABOUT US</a>
           <a href="Contact">CONTACT</a>
 
+    </div>
+    <div bind:this={mobileNav} class="mobileNav">
+        <div class="td-mobile-wrap">
+           <a href="javascript:void(0)" class="closebtn" on:click|preventDefault={closeNav} >&times;</a>
+        </div>
+        
+        <div class="td-mobile-content">
+          <ul>
+            <li>HOME</li>
+            <li>PUBLIC EDUCATION</li>
+            <li>SERVICES</li>
+            <li>TRAININGS</li>
+            <li>ABOUT US</li>
+            <li>CONTACT</li>
+          </ul>
+        </div>
     </div>
 
 </div>

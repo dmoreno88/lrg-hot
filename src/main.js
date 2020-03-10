@@ -31,6 +31,11 @@ app.path('/PubEd', async ctx => {
     ctx.mount(Chunk(()=> import('./pages/PubEd.svelte')));
 })
 
+app.path('/EventRequest', async ctx => {
+    ctx.mount(Chunk(()=> import('./pages/PubEventForm.svelte')));
+})
+
+
 
 app.path('/OpenTickets', async ctx => {
     ctx.mount(Chunk(() => import('./pages/OpenTickets.svelte')));
