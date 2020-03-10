@@ -143,12 +143,21 @@
 
         #innerComms2{
             flex-direction: column;
+             align-items: center;
+           max-height: 100%;
+           height: 100vh;
+           flex-direction: column;
+           margin-top: 0;
 
 
         }
 
         .ecoms{
              height: auto;
+        }
+
+        .ecoms2{
+            height: auto;
         }
 
          

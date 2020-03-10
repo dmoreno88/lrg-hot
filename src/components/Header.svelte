@@ -234,8 +234,8 @@ img{
     <div class="logo">
         <img alt="logo"  src="/build/assets/logo/public_safety_logo.webp" />
     </div>
-    <div class="btnnav">
-      <button on:click={onShowMenu}>
+    <div on:click={onShowMenu} class="btnnav">
+      <button on:tap={onShowMenu} on:click={onShowMenu}>
         <span class="mif-menu"></span>
       </button>
     </div>
