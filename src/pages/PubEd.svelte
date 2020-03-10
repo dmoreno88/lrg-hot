@@ -125,6 +125,12 @@
         width: 100%;
         height: auto;
       }
+      .center-image{
+          display: flex;
+          text-align: center;
+          align-content: center;
+          justify-content: center;
+      }
       .grid-container-3 {
           display: initial;
       
@@ -185,7 +191,10 @@
             </div>
             <div></div>
             <div>
-                <img id="imgCon"  src="/build/assets/pages/pubed/main-photo.jpg"  alt="Kids with mascot" />
+                <div class="center-image">
+                   <img id="imgCon"  src="/build/assets/pages/pubed/main-photo.jpg"  alt="Kids with mascot" />
+                </div>
+               
                 <div class="flex-container"><b>
             <h1><i>Know WHEN to call 9-1-1.</i></h1>
             <b><p>9-1-1 is for emergencies only. You
