@@ -1,6 +1,17 @@
 <script>
 
   console.log(window.app);
+  let mobileNav;
+
+  function onShowMenu() {
+   // document.getElementById("mySidenav").style.width = "250px";
+
+    mobileNav.style.width = "100%";
+  }
+
+  function closeNav() {
+    mobileNav.style.width = "0";
+  }
 </script>
 
 <style> 
@@ -105,6 +116,37 @@ img{
   cursor: pointer;
 }
 
+.mobileNav {
+  position: absolute;
+  z-index: 4;
+  width: 0;
+  top: 0;
+  right: 0;
+  background:rgba(15, 82, 186, .72);
+  height: 100%;
+  min-height: 968px;
+  transition: 0.7s;
+  overflow-x: hidden;
+  
+}
+
+.mobileNav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.mobileNav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 48px;
+  margin-left: 50px;
+}
+
 @media only screen and (max-width: 1200px) {
   .logo{
     position: relative;
@@ -140,6 +182,7 @@ img{
      
     }
 
+
     .btnnav > button:hover{
        cursor: pointer;
        color:rgba(20, 57, 117, 1);
@@ -161,7 +204,7 @@ img{
         <img alt="logo"  src="/build/assets/logo/public_safety_logo.webp" />
     </div>
     <div class="btnnav">
-      <button>
+      <button on:click={onShowMenu}>
         <span class="mif-menu"></span>
       </button>
     </div>
@@ -188,6 +231,9 @@ img{
           <a on:click|preventDefault="{()=>{window.app.navigate('/AboutUs')}}" href="#AboutUs">ABOUT US</a>
           <a href="Contact">CONTACT</a>
 
+    </div>
+    <div bind:this={mobileNav} class="mobileNav">
+        <a href="javascript:void(0)" class="closebtn" on:click|preventDefault={closeNav} >&times;</a>
     </div>
 
 </div>
