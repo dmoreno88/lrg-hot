@@ -134,8 +134,8 @@
    }
 
    .asset-video{
-           width: 590px;
-    height: 375px;
+       width: 590px;
+       height: 375px;
    }
 
 
@@ -166,6 +166,13 @@
          #btnEvent{
         margin-top: 60px;
     }
+     #btnEvent{
+            text-align: center;
+        }
+
+        button{
+             margin-top: 0;
+        }
     }
 
      @media only screen and (max-width: 1290px) {
@@ -188,6 +195,8 @@
             display: flex;
             flex-direction: column-reverse;
         }
+
+       
      }
 
    
@@ -227,7 +236,7 @@
             </div>
 
                     <div id="btnEvent">
-                    <button on:click="{()=>{window.app.navigate('/EventRequest')}}">EVENT REQUEST</button>
+                       <button on:click="{()=>{window.app.navigate('/EventRequest')}}">EVENT REQUEST</button>
                     </div>
             </div>
             <div></div>
