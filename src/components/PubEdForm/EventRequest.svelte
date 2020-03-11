@@ -1,6 +1,7 @@
 <script>
+  import {onMount, onDestroy} from "svelte";
   import {  fly } from 'svelte/transition';
- 
+  import IMask from "imask";
   import ButtonNext from "./ButtonNext.svelte";
   import CalendarPicker from "./CalendarPicker.svelte";
   let selectedIndex = 0;
@@ -13,6 +14,25 @@
   let event_end = "";
   let fileName = "";
   let files;
+
+
+  //HTML BIND VALUES
+  let mnumber;
+  let altnumber;
+  let mmask;
+  let altmask;
+
+  onMount(()=> {
+     let options = {mask: '(000) 000-0000'}
+     mmask = IMask(mnumber, options);
+     altmask = IMask(altnumber, options);
+  });
+
+  onDestroy(() => {
+      mmask.destroy();
+      altmask.destroy();
+  });
+
   function handleFile(e) {
     const target = e.target || e.srcElement;
     var found = false;
@@ -107,9 +127,9 @@
                  <div style="height: 20px; width: 100%; border-top-left-radius: 20px; border-top-right-radius:20px;background: #2E3257; ">
                  </div>
                  <ul class="horizontal-list">
-                    <li><button on:click="{() =>{selectedIndex = 0; }}" class:active={selectedIndex == 0}>1</button> EVENT INFORMATION</li>
-                    <li><button on:click="{() =>{selectedIndex = 1;}}" class:active={selectedIndex == 1}>2</button> CONTACT INFORMATION</li>
-                    <li><button on:click="{() =>{selectedIndex = 2;}}" class:active={selectedIndex == 2}>3</button> ADDITIONAL INFORMATION</li>
+                    <li on:click="{() =>{selectedIndex = 0; }}" ><button on:click="{() =>{selectedIndex = 0; }}" class:active={selectedIndex == 0}>1</button> EVENT INFORMATION</li>
+                    <li on:click="{() =>{selectedIndex = 1;}}"  ><button on:click="{() =>{selectedIndex = 1;}}" class:active={selectedIndex == 1}>2</button> CONTACT INFORMATION</li>
+                    <li on:click="{() =>{selectedIndex = 2;}}"  ><button on:click="{() =>{selectedIndex = 2;}}" class:active={selectedIndex == 2}>3</button> ADDITIONAL INFORMATION</li>
                  </ul>
                  <form>
                     <div class="container">
@@ -308,7 +328,7 @@
 
                               <div class="group">
                                   <label>Phone Number:</label>
-                                  <input type="text" />
+                                  <input bind:this={mnumber} type="text" />
                               </div>
                                <div class="group">
                                   <label>E-mail:</label>
@@ -331,7 +351,7 @@
 
                               <div class="group">
                                   <label>Phone Number:</label>
-                                  <input type="text" />
+                                  <input bind:this={altnumber} type="text" />
                               </div>
                                <div class="group">
                                   <label>E-mail:</label>

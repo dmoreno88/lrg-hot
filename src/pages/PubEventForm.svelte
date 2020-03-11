@@ -41,7 +41,7 @@ h3{
     <div class="grid-item">
         <h1>Event Request</h1>
         <NoteEventRequest title="Note" {notes} />
-        <h3 style="text-align: center; color: #263E70;cursor: pointer;"><img width="18" height="18" src="/assets/png/calendar.png" alt="Calendar" />Click to view scheduled events</h3>
+        <h3 style="text-align: center; color: #263E70;cursor: pointer;">Click to view scheduled events</h3>
         <EventRequest />     
     </div>
     <div class="grid-item">
