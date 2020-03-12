@@ -1,5 +1,5 @@
 <script>
-    
+     import {onMount} from "svelte";
      import VideoPlayer from '../components/VideoPlayer.svelte';
      import Header from "../components/Header.svelte";
 	 import Footer from "../components/Footer.svelte";
@@ -12,7 +12,21 @@
      let lvLink = "./build/assets/videos/lv_psa.mp4";
      let karisLink = "./build/assets/videos/karis_law.mp4";
      let txtLink = "./build/assets/videos/txt_to_911.mp4";
+     
+     let mobileAppear = false;
 
+    onMount(() => {
+
+        mobileAppear = (window.innerWidth < 1290) ? true : false;
+        window.onresize = (e) => {
+            let target = e.target || e.srcElement;
+            if(target.innerWidth < 1290){
+                mobileAppear  = true;
+            }else {
+                mobileAppear = false;
+            }
+        }
+    })
 </script>
 <style>
     h1 {
@@ -120,10 +134,12 @@
    }
 
    .asset-video{
-           width: 590px;
-    height: 375px;
+       width: 590px;
+       height: 375px;
    }
 
+
+    
 
     @media only screen and (max-width: 1600px) {
      
@@ -150,13 +166,44 @@
          #btnEvent{
         margin-top: 60px;
     }
+     #btnEvent{
+            text-align: center;
+        }
+
+        button{
+             margin-top: 0;
+        }
     }
+
+     @media only screen and (max-width: 1290px) {
+
+         .grid-container-2{
+             display: flex;
+             flex-direction: column;
+             justify-content: space-around;
+         }
+         .asset-video
+         {
+             text-align: center;
+             margin: 0 auto;
+         }
+
+         .video-top{
+             margin-top: 30px;
+         }
+        .mobile-flex{
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+       
+     }
 
    
 </style>
 <Header   />   
     <Wrapper>
-        <div class="flex-container">
+        <div  class="flex-container">
         <h1><b>Public Education </b><i > Program</i></h1>
         <div class="grid-container-3">
             <div><b>
@@ -189,7 +236,11 @@
             </div>
 
                     <div id="btnEvent">
+<<<<<<< HEAD
                     <button on:click="{()=>{console.log("EVENT")}}">EVENT REQUEST</button>
+=======
+                       <button on:click="{()=>{window.app.navigate('/EventRequest')}}">EVENT REQUEST</button>
+>>>>>>> ef6474bee1b21bce105496b2ac3279b6957ca075
                     </div>
             </div>
             <div></div>
@@ -257,24 +308,46 @@
                     </div>
 
 
-                  <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
-                        The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies and others agenices within the region to ensure 
-                        the 9-1-1 physical address is established. <br><br>
-                        Our responsibility consist of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo
-                         and Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data. 
+                {#if mobileAppear}
+                     <div class="mobile-flex">
+                         <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
+                            The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies and others agenices within the region to ensure 
+                            the 9-1-1 physical address is established. <br><br>
+                            Our responsibility consist of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo
+                            and Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data. 
 
+                         </div>
+                
+                        <div class="asset-video">
+                            {#if lvVideo}
+                                    <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
+                            {:else}
+                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/lv_banner.jpg" alt="Lv banner" />
+                            {/if}
+                        
+                        </div>         
                   </div>
+                {:else}
+                        <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
+                            The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies and others agenices within the region to ensure 
+                            the 9-1-1 physical address is established. <br><br>
+                            Our responsibility consist of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo
+                            and Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data. 
+
+                         </div>
                 
-                <div class="asset-video">
-                     {#if lvVideo}
-                            <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
-                    {:else}
-                            <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/lv_banner.jpg" alt="Lv banner" />
-                    {/if}
+                        <div class="asset-video">
+                            {#if lvVideo}
+                                    <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
+                            {:else}
+                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/lv_banner.jpg" alt="Lv banner" />
+                            {/if}
+                        </div> 
+                {/if}
+                 
+                   
                 
-                </div>             
-                
-                <div >
+                <div class="asset-video video-top">
         
                                      
                     {#if txtVideo}

@@ -15,10 +15,10 @@
         const links = document.getElementsByTagName("link");
         const size = links.length;
         let found = false;
+      
         for(var i = 0; i < size; i++){
             
             if(links[i].rel == "stylesheet" && links[i].href.indexOf("metro-table.css") > 0){
-               
                 found = true;
                 break;
             }
