@@ -13,7 +13,12 @@
   let event_start = "";
   let event_end = "";
   let fileName = "";
+  let premises;
   let files;
+
+  //HTML INPUT VALUES
+  let altphone;
+  let phone;
 
 
   //HTML BIND VALUES
@@ -21,16 +26,22 @@
   let altnumber;
   let mmask;
   let altmask;
-
+  let options =  {mask: '(000) 000-0000'}
   onMount(()=> {
-     let options = {mask: '(000) 000-0000'}
-     mmask = IMask(mnumber, options);
-     altmask = IMask(altnumber, options);
+     if(mnumber && altnumber){
+        mmask = IMask(mnumber, options);
+        altmask = IMask(altnumber, options);
+     }
+    
+     
   });
 
   onDestroy(() => {
-      mmask.destroy();
-      altmask.destroy();
+      if(mmask && altmask) {
+           mmask.destroy();
+          altmask.destroy();
+      }
+     
   });
 
   function handleFile(e) {
@@ -49,6 +60,31 @@
     if(found) {
       target.value = "";
     }
+  }
+
+  function destroyInput() {
+    if(mmask){
+        mmask.destroy();
+        mmask = null;
+     }
+     if(altmask) {
+       altmask.destroy();
+       altmask = null
+     }
+  }
+  function attachInput() {
+      var clearTime = setTimeout(() => {
+          if(!mmask && !altmask){
+             mmask = IMask(mnumber, options);
+            altmask = IMask(altnumber, options);
+          }
+
+          clearTimeout(clearTime);
+      }, 250);
+
+
+
+      
   }
 </script>
 <style>
@@ -70,7 +106,7 @@
         cursor: pointer;
         padding: 40px;
 	}
-    button {
+   li button {
       height: 30px;
       width: 30px;
       border-radius: 50%;
@@ -85,7 +121,7 @@
       grid-template-columns: 10% 80% 10%;
       padding: 10px;
     }
-    select, input {
+    .group select, .group input {
       width: 100%;
     }
   
@@ -99,6 +135,26 @@
     {
       text-align: center;
     }
+
+    .input-group
+    {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      width: 100%;
+      flex: 1 1 auto;
+    }
+
+    .input-group input{
+      width: 90%;
+    }
+
+    .input-group button{
+      width: 10%;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
 
     @media screen and (max-width: 1590px) {
        ul.horizontal-list {
@@ -127,9 +183,10 @@
                  <div style="height: 20px; width: 100%; border-top-left-radius: 20px; border-top-right-radius:20px;background: #2E3257; ">
                  </div>
                  <ul class="horizontal-list">
-                    <li on:click="{() =>{selectedIndex = 0; }}" ><button on:click="{() =>{selectedIndex = 0; }}" class:active={selectedIndex == 0}>1</button> EVENT INFORMATION</li>
-                    <li on:click="{() =>{selectedIndex = 1;}}"  ><button on:click="{() =>{selectedIndex = 1;}}" class:active={selectedIndex == 1}>2</button> CONTACT INFORMATION</li>
-                    <li on:click="{() =>{selectedIndex = 2;}}"  ><button on:click="{() =>{selectedIndex = 2;}}" class:active={selectedIndex == 2}>3</button> ADDITIONAL INFORMATION</li>
+                    <li on:click="{() =>{selectedIndex = 0; destroyInput(); }}" ><button on:click="{() =>{selectedIndex = 0; }}" class:active={selectedIndex == 0}>1</button> EVENT INFORMATION</li>
+                    <li on:click="{() =>{selectedIndex = 1; attachInput()}}"  ><button on:click="{() =>{selectedIndex = 1;}}" class:active={selectedIndex == 1}>2</button> CONTACT INFORMATION</li>
+                    <li on:click="{() =>{selectedIndex = 2; destroyInput();}}"  ><button on:click="{() =>{selectedIndex = 2;}}" class:active={selectedIndex == 2}>3</button> PREMISES INFORMATION</li>
+                    <li></li>
                  </ul>
                  <form>
                     <div class="container">
@@ -138,7 +195,7 @@
 
                        
                         {#if (selectedIndex == 0)}
-                            <div id="wrapper" transition:fly="{{ x: 200, duration: 200 }}" > 
+                            <div  id="wrapper" transition:fly="{{ x: 200, duration: 200 }}" > 
                               <div class="group">
                                   <label>Event Name:</label>
                                   <input bind:value={event_name} type="text" />
@@ -328,7 +385,7 @@
 
                               <div class="group">
                                   <label>Phone Number:</label>
-                                  <input bind:this={mnumber} type="text" />
+                                  <input bind:this={mnumber} bind:value={phone} type="text" />
                               </div>
                                <div class="group">
                                   <label>E-mail:</label>
@@ -351,7 +408,7 @@
 
                               <div class="group">
                                   <label>Phone Number:</label>
-                                  <input bind:this={altnumber} type="text" />
+                                  <input bind:this={altnumber} bind:value={altphone} type="text" />
                               </div>
                                <div class="group">
                                   <label>E-mail:</label>
@@ -359,24 +416,32 @@
                               </div>
                             </div>
                         {:else if selectedIndex == 2} 
-                          <div id="wrapper">
-                              <div class="group">
-                                <label>Will Identification be required to enter premises?</label>
-                                <select name="" id="">
-                                  <option ></option>
-                                  <option>Yes</option>
-                                  <option>No</option>
-                                </select>
-                              </div>
-                              <div class="group">
-                                  <label >Will this be an Indoor/OutDoor Event</label>
-                                  <select>
-                                    <option></option>
-                                    <option>Indoor</option>
-                                    <option>Outdoor</option>
+                            <div id="wrapper">
+                                <div class="group">
+                                  <label>Will Identification be required to enter premises?</label>
+                                  <select name="" id="">
+                                    <option ></option>
+                                    <option>Yes</option>
+                                    <option>No</option>
                                   </select>
-                              </div>
-                          </div>
+                                </div>
+                                <div class="group">
+                                    <label >Will this be an Indoor/OutDoor Event</label>
+                                    <select bind:value={premises}>
+                                      <option></option>
+                                      <option>Indoor</option>
+                                      <option>Outdoor</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                  <label>
+                                    Specified the option for {premises.toLowerCase()} event. If is not specified please input as other.
+                                  </label>
+                                  <input type="text" />
+                                  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</button>
+                                </div>
+
+                            </div>
                         {/if}
 
                         

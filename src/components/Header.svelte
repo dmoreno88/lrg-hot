@@ -248,7 +248,7 @@ img{
           <div class="dropdown"><button class="dropbtn">SERVICES </button>
           <div class="dropdown-content">
               <a href="AddressRequest">Address Request</a>
-              <a href="PubEdRequest">Public Education Request</a>
+              <a on:click|preventDefault="{()=>{window.app.navigate('/EventRequest')}}"  href="EventRequest">Public Education Request</a>
               <a href="RecorderRequest">Recorder Request</a>
             </div>
           </div> 
