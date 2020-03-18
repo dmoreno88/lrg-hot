@@ -30,14 +30,14 @@
 </script>
 <style>
     h1 {
-        color: #2B4988;
+        color: #36454f ;
         
     }
     h3{
-        color: #2B4988;
+        color: #36454f ;
     }
     h1 i {
-        color: #707070;
+        color: #36454f ;
     }
     .flex-container {
         max-width: 1200px;
@@ -51,7 +51,7 @@
         padding-bottom: 25px;
     }
     p {
-        color: #2B4988;
+        color: #36454f ;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 17px;
         padding-left: 15px; 
@@ -103,7 +103,7 @@
         cursor: pointer;
     }
     .bannerMsg {
-        color: #36454f ;
+        color: #36454f;
         padding: 15px;
         font-weight: bold;
         font-size: 1.29rem;
@@ -203,62 +203,7 @@
 </style>
 <Header   />   
     <Wrapper>
-        <div  class="flex-container">
-        <h1><b>Public Education </b><i > Program</i></h1>
-        <div class="grid-container-3">
-            <div><b>
-                    
-                    <p>We provide presentations to our local cities, school, daycares, Emergency Medical Services (EMS), Fire and Police Departments within Hidalgo and Willacy County. 
-                    
-                    <p>Promotional item distribution is a major part of educating the public on how to correctly use the 9-1-1 system. During our promotional events, our mascots (Cell Phone Sally, Kid Friendly Keith, and Josh) have become a BIG part of our interaction with the early youth.
-                    </p>
-                    <p>
-                        We promote and educate the public on how to correctly use the 9-1-1 system. By using multi-media, we demonstrate the proper way to call 9-1-1 and what is considered a 9-1-1 emergency call. 
-                    </p>
-                    <p>Schedule your event today!</p>
-                </b>
 
-            
-            <!-- <div id="titleServe">We Serve</div> -->
-            <div id="innerComms2">
-                
-                
-                <div class="title2"><h4><center>CELL PHONE SALLY</center></h4>
-                    <img id="imgCon2"  src="/build/assets/pages/pubed/cellphonesally_mascot.jpg"  alt="Cell Phone Sally" />
-                </div>
-                <div class="title2"><h4><center>KID FRIENDLY KEITH</center></h4>
-                    <img id="imgCon2"  src="/build/assets/pages/pubed/kfk_mascot.jpg"  alt="Keith Friendly Kid" />
-                </div>
-                <div class="title2"><h4><center>JOSH</center></h4>
-                    <img id="imgCon2"  src="/build/assets/pages/pubed/josh_mascot.jpg"  alt="Josh" />
-                </div>
-                
-            </div>
-
-                    <div id="btnEvent">
-                       <button on:click="{()=>{window.app.navigate('/EventRequest')}}">EVENT REQUEST</button>
-                    </div>
-            </div>
-            <div></div>
-            <div>
-                <div class="center-image">
-                   <img id="imgCon"  src="/build/assets/pages/pubed/main-photo.jpg"  alt="Kids with mascot" />
-                </div>
-               
-                <div class="flex-container"><b>
-            <h1><i>Know WHEN to call 9-1-1.</i></h1>
-            <b><p>9-1-1 is for emergencies only. You should only be dialing 9-1-1 if someone is hurt or in danger, or
-                  if you are in immediate need of police, fire, or medical assistance.
-               </p>
-
-        <p>
-            Knowing where you are is the most important information you can provide as a 9-1-1 caller, so be sure to be aware of 
-            your surroundings. Make a real effort to be as detailed as possible.
-        </p>
-
-            </b>
-            </div>
-        </div>
         
 
 <div class="flex-container">
@@ -307,10 +252,10 @@
                 {#if mobileAppear}
                      <div class="mobile-flex">
                          <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
-                            The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies 
-                            and other agencies within the region to ensure the 9-1-1 physical address is established. <br><br>
-                            Our responsibility consists of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo and 
-                            Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data.
+                            The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies and others agenices within the region to ensure 
+                            the 9-1-1 physical address is established. <br><br>
+                            Our responsibility consist of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo
+                            and Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data. 
 
                          </div>
                 
@@ -325,17 +270,18 @@
                   </div>
                 {:else}
                         <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
-                            The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies 
-                            and other agencies within the region to ensure the 9-1-1 physical address is established. <br><br>
-                            Our responsibility consists of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo and 
-                            Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data.
+                            The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies and others agenices within the region to ensure 
+                            the 9-1-1 physical address is established. <br><br>
+                            Our responsibility consist of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo
+                            and Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data. 
+
                          </div>
                 
                         <div class="asset-video">
                             {#if lvVideo}
                                     <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
                             {:else}
-                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/911TIPS_COVER.png" alt="Lv banner" />
+                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/lv_banner.jpg" alt="Lv banner" />
                             {/if}
                         </div> 
                 {/if}

@@ -221,11 +221,6 @@ img{
     }
 }
 
-
-
-
-
-
 </style>
 
 
@@ -234,11 +229,13 @@ img{
     <div class="logo">
         <img alt="logo"  src="/build/assets/logo/public_safety_logo.webp" />
     </div>
+    
     <div on:click={onShowMenu} class="btnnav">
       <button on:tap={onShowMenu} on:click={onShowMenu}>
         <span class="mif-menu"></span>
       </button>
     </div>
+
     <div class="navbar">
   
           <a on:click|preventDefault="{()=>{window.app.navigate('/')}}" href="#Home">HOME</a>
@@ -247,22 +244,30 @@ img{
 
           <div class="dropdown"><button class="dropbtn">SERVICES </button>
           <div class="dropdown-content">
-              <a href="AddressRequest">Address Request</a>
-              <a href="PubEdRequest">Public Education Request</a>
-              <a href="RecorderRequest">Recorder Request</a>
-            </div>
+              <a href="AddressRequest">ADDRESS REQUEST</a>
+              <a href="PubEdRequest">PUBLIC EDUCATION REQUEST</a>
+              <a href="RecorderRequest">RECORDING REQUEST</a>
+          </div>
           </div> 
-            <div class="dropdown"><button class="dropbtn">TRAININGS </button>
+          
+          <div class="dropdown"><button class="dropbtn">TRAININGS </button>
           <div class="dropdown-content">
               <a href="Train1">Link 1</a>
               <a href="Train2">Link 2</a>
-            </div>
+          </div>
           </div> 
 
-          <a on:click|preventDefault="{()=>{window.app.navigate('/AboutUs')}}" href="#AboutUs">ABOUT US</a>
+          <div class="dropdown"><button class="dropbtn">ABOUT </button>
+          <div class="dropdown-content">
+              <a on:click|preventDefault="{()=>{window.app.navigate('/WhoWeAre')}}" href="WhoWeAre">WHO WE ARE</a>
+              <a on:click|preventDefault="{()=>{window.app.navigate('/ContactList')}}" href="ContactList">CONTACT LIST</a>
+          </div>
+          </div> 
+
           <a href="Contact">CONTACT</a>
 
     </div>
+
     <div bind:this={mobileNav} class="mobileNav">
         <div class="td-mobile-wrap">
            <a href="javascript:void(0)" class="closebtn" on:click|preventDefault={closeNav} >&times;</a>
@@ -274,7 +279,7 @@ img{
             <li>PUBLIC EDUCATION</li>
             <li>SERVICES</li>
             <li>TRAININGS</li>
-            <li>ABOUT US</li>
+
             <li>CONTACT</li>
           </ul>
         </div>

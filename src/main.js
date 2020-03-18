@@ -24,9 +24,14 @@ app.path('/', (req, res) => {
 
 //ADD any new paths into the website by following this code below...
 
-app.path('/AboutUs', async ctx=>{
-    ctx.mount(Chunk(()=> import("./pages/AboutUs.svelte")));
+app.path('/WhoWeAre', async ctx=>{
+    ctx.mount(Chunk(()=> import("./pages/WhoWeAre.svelte")));
 });
+
+app.path('/ContactList', async ctx=>{
+    ctx.mount(Chunk(()=> import("./pages/ContactList.svelte")));
+});
+
 app.path('/PubEd', async ctx => {
     ctx.mount(Chunk(()=> import('./pages/PubEd.svelte')));
 })

@@ -103,7 +103,7 @@
 
     hr.type_1 {
         border: 0;
-        height: 195px;
+        height: 200px;
         background-image: url('/build/assets/logo/logo_line.break3.png');
         background-repeat: no-repeat;
         background-size: 1150px;
