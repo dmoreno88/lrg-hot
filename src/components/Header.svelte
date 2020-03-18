@@ -244,17 +244,10 @@ img{
 
           <div class="dropdown"><button class="dropbtn">SERVICES </button>
           <div class="dropdown-content">
-<<<<<<< HEAD
               <a href="AddressRequest">Address Request</a>
               <a on:click|preventDefault="{()=>{window.app.navigate('/EventRequest')}}"  href="EventRequest">Public Education Request</a>
               <a href="RecorderRequest">Recorder Request</a>
             </div>
-=======
-              <a href="AddressRequest">ADDRESS REQUEST</a>
-              <a href="PubEdRequest">PUBLIC EDUCATION REQUEST</a>
-              <a href="RecorderRequest">RECORDING REQUEST</a>
-          </div>
->>>>>>> 791b144f683edf1a429c9d73f7ab358b2f0e3467
           </div> 
           
           <div class="dropdown"><button class="dropbtn">TRAININGS </button>
