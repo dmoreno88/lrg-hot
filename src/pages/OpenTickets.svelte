@@ -4,9 +4,15 @@
     import Header from "../components/Header.svelte";
 	import Footer from "../components/Footer.svelte";
     import Wrapper from "../components/Wrapper.svelte";
+    import Loading from "../components/Loading.svelte";
     
-    onMount(() => {
+    let url = "https://gis.lrgvdc911.org/php/spartan/api/v2/index.php/addressticket/getAllReadyTickets/";
+    let tickets = [];
+    let searchTicket;
+    let ticketsLoading = true;
 
+    onMount(() => {
+        ticketsLoading = true;
         //Lazy LOADING CSS IMPORTANT FOR TABLE..
         lazyLoadingCSS();
     });
@@ -29,9 +35,50 @@
             const style = document.createElement('link');
             style.rel = 'stylesheet';
             style.href = '/metro-table.css';
-
+            style.onload = ()=>{
+               
+                onDownloadTickets();
+            }
             head.appendChild(style);
+        }else{
+            onDownloadTickets();
         }
+    }
+
+    async function onDownloadTickets(){
+        const response = await fetch(url);
+        const json = await response.json();
+        tickets = json;
+        ticketsLoading = false;
+       
+    }
+
+    function parseLegal(ticket) {
+        
+        if(ticket.subdivision && ticket.lot_num){
+            return `${ticket.subdivision} LOT ${ticket.lot_num}`;
+        }
+        else{
+            return ticket.subdivision;
+        }
+
+    }
+    function onEnter(e){
+        if(!ticketsLoading){
+            ticketsLoading = true;
+        }
+        if(e.keyCode == window.ENTER){
+           
+           tickets = tickets.filter((e) => e.objectid.includes(searchTicket));
+            ticketsLoading = false;
+        }
+        else if(!searchTicket){
+            onDownloadTickets();
+        }
+    }
+
+    function onSearch() {
+         tickets = tickets.filter((e) => e.objectid.includes(searchTicket));
     }
 
 </script>
@@ -59,43 +106,72 @@
     .center {
         text-align: center;
     }
+    #table{
+       
+        height: 600px;
+        overflow: auto;
+    }
+    button{
+        background: rgb(45, 45, 97);
+        color:white;
+    }
+    button:hover{
+        background: rgba(45, 45, 97, 0.5);
+        cursor: pointer;
+    }
+    .input-group{
+        text-align: center;
+    }
+    input{
+        width: 80%;
+    }
+
+   
 </style>
 <Header />
 <Wrapper>
+     
     <div class="flex-main">
         <div class="center">
             <img loading="lazy" class="clickable" alt="LV" src="./build/assets/carousel/location_validation.png" />
         </div>
-        
+        <br />
+        {#if ticketsLoading}
+            <Loading />
+        {/if}
+        <div class="input-group">
+             <input type="text" on:keydown={onEnter} bind:value={searchTicket} placeholder="Search By Ticket Number" />
+             <button on:click={onSearch}>Search</button>
+             <button on:click={onDownloadTickets}>Refresh</button>
+        </div>
+        <br />
+       
         <div id="table">
             <table class="table">
                     <thead>
                     <tr>
                         <th>#</th>
+                        <th>Date Requested</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Username</th>
+                        <th>Legal Description</th>
+                        <th>Property Id</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Bill</td>
-                        <td>Gates</td>
-                        <td>@billy</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Steve</td>
-                        <td>Jobs</td>
-                        <td>@stevy</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Larry</td>
-                        <td>Page</td>
-                        <td>@larry</td>
-                    </tr>
+                         
+                          {#each tickets as ticket, i}
+                             <tr>
+                                <td>{(i + 1)}</td>
+                                <td>{ticket.created_date}</td>
+                                <td>{ticket.cfirst_name}</td>
+                                <td>{ticket.clast_name}</td>
+                                <td>{parseLegal(ticket)}</td>
+                                <td>{ticket.property_id}</td>
+                                <td><button>Sign Letter</button></td>
+                             </tr>
+                          {/each}  
                     </tbody>
                 </table>
         </div>
