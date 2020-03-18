@@ -5,11 +5,20 @@
 	import Footer from "../components/Footer.svelte";
     import Wrapper from "../components/Wrapper.svelte";
     import Loading from "../components/Loading.svelte";
-    
+    import AuthorizeLetter from "../components/Window/AuthorizeLetter.svelte";
+    import SignaturePad from "../components/Letter/SignaturePad.svelte";
+
     let url = "https://gis.lrgvdc911.org/php/spartan/api/v2/index.php/addressticket/getAllReadyTickets/";
     let tickets = [];
     let searchTicket;
     let ticketsLoading = true;
+    let authorize = false;
+    let selected = null;
+    let ticket = null;
+    let fname = "";
+    let signature = false;
+    let pad = null;
+
 
     onMount(() => {
         ticketsLoading = true;
@@ -81,6 +90,32 @@
          tickets = tickets.filter((e) => e.objectid.includes(searchTicket));
     }
 
+    function onPopUp(tick){
+        authorize = true;
+        selected = tick;
+        ticket = selected.objectid;
+        
+        fname = `${tick.cfirst_name} ${tick.clast_name}`;
+        console.log(fname);
+        console.log(ticket);
+    }
+
+    function onInvalid(){
+        authorize = false;
+    }
+
+    function onSignature(){
+        signature = true;
+        authorize = false;
+    }
+
+    function onReadyPad() {
+        if(pad){
+             pad.resizeCanvas();
+        }
+       
+    }
+
 </script>
 <style>
     .flex-main{
@@ -139,6 +174,13 @@
         {#if ticketsLoading}
             <Loading />
         {/if}
+        {#if authorize}
+            <AuthorizeLetter on:passed={onSignature} on:invalid={onInvalid} {ticket} on:close="{(e)=>{authorize = e.dislay}}" {fname} />
+        {/if}
+        {#if signature}
+             <SignaturePad bind:this={pad} on:ready={onReadyPad} />
+        {/if}
+
         <div class="input-group">
              <input type="text" on:keydown={onEnter} bind:value={searchTicket} placeholder="Search By Ticket Number" />
              <button on:click={onSearch}>Search</button>
@@ -169,7 +211,7 @@
                                 <td>{ticket.clast_name}</td>
                                 <td>{parseLegal(ticket)}</td>
                                 <td>{ticket.property_id}</td>
-                                <td><button>Sign Letter</button></td>
+                                <td><button on:click="{()=>{onPopUp(ticket)}}">Sign Letter</button></td>
                              </tr>
                           {/each}  
                     </tbody>
