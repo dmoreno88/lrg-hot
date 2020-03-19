@@ -1,11 +1,13 @@
 <script>
-    import {createEventDispatcher} from "svelte";
+    import { createEventDispatcher} from "svelte";
     const dispatch = createEventDispatcher();
     export let fname;
     export let ticket = 0;
     let value;
     let tries = 4;
     let error = false;
+
+  
 
     function fixName(name){
        let lower = name.toLowerCase();
@@ -31,6 +33,7 @@
         if(e.keyCode == window.ENTER){
             if(value == ticket){
                 dispatch("passed", true);
+               
             }else{
                 tries -= 1;
                 error = true;
@@ -45,6 +48,7 @@
      
         if(value == ticket){
            dispatch("passed", true);
+          
         }else{
             tries -= 1;
             error = true;
@@ -53,6 +57,10 @@
             }
         }
     }
+
+ 
+
+   
 
 </script>
 <style>

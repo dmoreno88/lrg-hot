@@ -9,6 +9,7 @@
     import SignaturePad from "../components/Letter/SignaturePad.svelte";
 
     let url = "https://gis.lrgvdc911.org/php/spartan/api/v2/index.php/addressticket/getAllReadyTickets/";
+    let genLetter = "https://gis.lrgvdc911.org/php/spartan/api/v2/index.php/template/pythonTemplateAnySvr/";
     let tickets = [];
     let searchTicket;
     let ticketsLoading = true;
@@ -18,6 +19,11 @@
     let fname = "";
     let signature = false;
     let pad = null;
+    let pdf = null;
+
+      let listServers = ["911sqlsvr", "911gisweb1",
+    , "911gissvr", "911Appsvr"];
+    let listPorts = [8080, 5000, 8080, 8080];
 
 
     onMount(() => {
@@ -57,9 +63,53 @@
     async function onDownloadTickets(){
         const response = await fetch(url);
         const json = await response.json();
+       
         tickets = json;
         ticketsLoading = false;
        
+    }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+
+    function ifPropertyId(){
+
+        if(selected.property_id){
+            return "PID # " +  selected.property_id;
+        }else 
+        {
+            return `${selected.subdivision} LOT ${selected.lot_num}`;
+        }
+        
+    }
+
+     async function onGenerateLetter() {
+        let index = getRandomInt(4); 
+        console.log(index);
+        let form = new FormData();
+        form.append("srv", listServers[index]);
+        form.append("port", listPorts[index]);
+
+        form.append("name", fname);
+        form.append("ticket", selected.objectid);
+        form.append("pr_name", '');
+        form.append("propid", ifPropertyId());
+        form.append("addr1", selected.full_address);
+        form.append("addr2", selected.msag_comm);
+        console.log(listServers[index]);
+        console.log(listPorts[index]);
+
+       fetch(genLetter, {method: 'POST', body: form}).then((response) =>{
+           return response.json()
+       }).then((data) => {
+           if(data.hasOwnProperty("pdf")){
+               pdf = data.pdf;
+           }
+           ticketsLoading = false;
+
+       });
     }
 
     function parseLegal(ticket) {
@@ -94,10 +144,9 @@
         authorize = true;
         selected = tick;
         ticket = selected.objectid;
-        
-        fname = `${tick.cfirst_name} ${tick.clast_name}`;
-        console.log(fname);
         console.log(ticket);
+        fname = `${tick.cfirst_name} ${tick.clast_name}`;
+
     }
 
     function onInvalid(){
@@ -105,8 +154,10 @@
     }
 
     function onSignature(){
+        ticketsLoading = true;
         signature = true;
         authorize = false;
+        onGenerateLetter()
     }
 
     function onReadyPad() {
@@ -114,6 +165,10 @@
              pad.resizeCanvas();
         }
        
+    }
+
+    function onLoading(){
+        ticketsLoading = true;
     }
 
 </script>
@@ -175,10 +230,10 @@
             <Loading />
         {/if}
         {#if authorize}
-            <AuthorizeLetter on:passed={onSignature} on:invalid={onInvalid} {ticket} on:close="{(e)=>{authorize = e.dislay}}" {fname} />
+            <AuthorizeLetter on:loading={onLoading} on:passed={onSignature} on:invalid={onInvalid} {ticket} on:close="{(e)=>{authorize = e.dislay}}" {fname} />
         {/if}
         {#if signature}
-             <SignaturePad bind:this={pad} on:ready={onReadyPad} />
+             <SignaturePad {pdf} bind:this={pad} on:ready={onReadyPad} />
         {/if}
 
         <div class="input-group">

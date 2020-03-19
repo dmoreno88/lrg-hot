@@ -1,18 +1,24 @@
 <script>
     import SignaturePad from "signature_pad";
-    import { PDFDocument } from 'pdf-lib';
+    // import { PDFDocument } from 'pdf-lib';
     import {onMount, createEventDispatcher} from "svelte";
+    import {  PDFDocument } from 'pdf-lib';
+    export let pdf;
 
     let canvas;
     let signaturePad;
+    let main = "https://gis.lrgvdc911.org/LETTER_TEMPLATES/"
 
     const dispatch = createEventDispatcher();
     onMount(() => {
+
+        getPDF();
+
         signaturePad = new SignaturePad(canvas, {
             // It's Necessary to use an opaque color when saving image as JPEG;
             // this option can be omitted if only saving as PNG or SVG
             backgroundColor: 'rgb(255, 255, 255)'
-            });
+         });
 
            
 
@@ -21,6 +27,19 @@
             dispatch("ready");
            
     })
+
+    async function getPDF() {
+        if(pdf){
+            const url = `${main}${pdf}`;
+            console.log(url);
+            const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
+            const pdfDoc = await PDFDocument.load(existingPdfBytes);
+
+             const pdfBytes = await pdfDoc.save();
+              download(pdfBytes, pdf, "application/pdf");
+        }
+       
+    }
 
     function onClear(){
         signaturePad.clear();
@@ -164,9 +183,11 @@ canvas {
       <div class="signature-pad--actions">
         <div>
           <button on:click={onClear} type="button" class="button clear" data-action="clear">Clear</button>
+          <p><input type="checkbox" /> English </p>
+          <p><input type="checkbox" /> Spanish </p>
         </div>
         <div>
-          <p><input type="checkbox" /> I consent to use Electronic Records and Signatures </p>'
+          <p><input type="checkbox" /> I consent to use Electronic Records and Signatures </p>
           <button on:click={onGenerate} type="button" class="button save" >Preview Online</button>
           <button on:click={onGenerate} type="button" class="button save" >E-mail Letter</button>
         </div>
