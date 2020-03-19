@@ -1,5 +1,6 @@
 <script>
     import SignaturePad from "signature_pad";
+    import { PDFDocument } from 'pdf-lib';
     import {onMount, createEventDispatcher} from "svelte";
 
     let canvas;
@@ -20,6 +21,33 @@
             dispatch("ready");
            
     })
+
+    function onClear(){
+        signaturePad.clear();
+    }
+
+    function onGenerate(){
+
+        if(!signaturePad.isEmpty()) {
+             const image = signaturePad.toDataURL()
+
+            var windowContent = '<!DOCTYPE html>';
+            windowContent += '<html>'
+            windowContent += '<head><title>Address Letter</title></head>';
+            //windowContent += '<style>img {position: absolute;} </style>'
+            windowContent += '<body>'
+            windowContent += '<img src="' + image + '">';
+            windowContent += '</body>';
+            windowContent += '</html>';
+            var printWin = window.open('','_blank');
+            printWin.document.open();
+            printWin.document.write(windowContent);
+            
+            printWin.focus();
+            printWin.print();
+        }
+       
+    }
 
     export function resizeCanvas() {
         // When zoomed out to less than 100%, for some very strange reason,
@@ -99,9 +127,7 @@
 
 .signature-pad--body
 canvas {
-  position: absolute;
-  left: 0;
-  top: 0;
+ 
   width: 100%;
   height: 100%;
   border-radius: 4px;
@@ -129,7 +155,7 @@ canvas {
 </style>
 <div id="signature-pad" class="signature-pad">
     <div class="signature-pad--body">
-      <canvas width="500" height="500" bind:this={canvas}>
+      <canvas  bind:this={canvas}>
       </canvas>
     </div>
     <div class="signature-pad--footer">
@@ -137,15 +163,12 @@ canvas {
 
       <div class="signature-pad--actions">
         <div>
-          <button type="button" class="button clear" data-action="clear">Clear</button>
-          <button type="button" class="button" data-action="change-color">Change color</button>
-          <button type="button" class="button" data-action="undo">Undo</button>
-
+          <button on:click={onClear} type="button" class="button clear" data-action="clear">Clear</button>
         </div>
         <div>
-          <button type="button" class="button save" data-action="save-png">Save as PNG</button>
-          <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
-          <button type="button" class="button save" data-action="save-svg">Save as SVG</button>
+          <p><input type="checkbox" /> I consent to use Electronic Records and Signatures </p>'
+          <button on:click={onGenerate} type="button" class="button save" >Preview Online</button>
+          <button on:click={onGenerate} type="button" class="button save" >E-mail Letter</button>
         </div>
       </div>
     </div>

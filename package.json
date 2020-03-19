@@ -20,6 +20,7 @@
     "crayon-svelte": "^6.0.0",
     "crayon-transition": "^6.0.0",
     "imask": "^6.0.3",
+    "pdf-lib": "^1.4.1",
     "signature_pad": "^3.0.0-beta.3",
     "sirv-cli": "^0.4.4",
     "svelte-spa-chunk": "^1.0.3",
