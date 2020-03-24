@@ -244,9 +244,9 @@ img{
 
           <div class="dropdown"><button class="dropbtn">SERVICES </button>
           <div class="dropdown-content">
-              <a href="AddressRequest">Address Request</a>
-              <a on:click|preventDefault="{()=>{window.app.navigate('/EventRequest')}}"  href="EventRequest">Public Education Request</a>
-              <a href="RecorderRequest">Recorder Request</a>
+              <a href="AddressRequest">ADDRESS REQUEST</a>
+              <a on:click|preventDefault="{()=>{window.app.navigate('/RecorderRequest')}}"  href="RecorderRequest">RECORDING REQUEST</a>
+              <a href="EventRequest">PUBLIC EDUCATION REQUEST</a>
             </div>
           </div> 
           
@@ -260,7 +260,7 @@ img{
           <div class="dropdown"><button class="dropbtn">ABOUT </button>
           <div class="dropdown-content">
               <a on:click|preventDefault="{()=>{window.app.navigate('/WhoWeAre')}}" href="WhoWeAre">WHO WE ARE</a>
-              <a on:click|preventDefault="{()=>{window.app.navigate('/ContactList')}}" href="ContactList">CONTACT LIST</a>
+              <a on:click|preventDefault="{()=>{window.app.navigate('/ContactList')}}" href="ContactList">E-COMMS TEAM</a>
           </div>
           </div> 
 

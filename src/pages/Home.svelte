@@ -142,7 +142,7 @@
         height: 200px;
         background-image: url('/build/assets/logo/logo_line.break3.png');
         background-repeat: no-repeat;
-        background-size: 1150px;
+        background-size: 900px;
         background-position: center;
         
     }
