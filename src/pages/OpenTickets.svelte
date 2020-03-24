@@ -21,8 +21,7 @@
     let pad = null;
     let pdf = null;
 
-      let listServers = ["911sqlsvr", "911gisweb1",
-    , "911gissvr", "911Appsvr"];
+    
     let listPorts = [8080, 5000, 8080, 8080];
 
 
@@ -87,10 +86,15 @@
 
      async function onGenerateLetter() {
         let index = getRandomInt(4); 
+        console.log(window.listServers);
+        let server = window.listServers[index];
+        let port   = listPorts[index];
+        console.log(`${server} : ${port}`);
+
         console.log(index);
         let form = new FormData();
-        form.append("srv", listServers[index]);
-        form.append("port", listPorts[index]);
+        form.append("srv", server);
+        form.append("port", port);
 
         form.append("name", fname);
         form.append("ticket", selected.objectid);

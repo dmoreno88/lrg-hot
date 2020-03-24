@@ -1,8 +1,6 @@
 <script>
     import SignaturePad from "signature_pad";
-    // import { PDFDocument } from 'pdf-lib';
     import {onMount, createEventDispatcher} from "svelte";
-    import {  PDFDocument } from 'pdf-lib';
     export let pdf;
 
     let canvas;
@@ -10,9 +8,14 @@
     let main = "https://gis.lrgvdc911.org/LETTER_TEMPLATES/"
 
     const dispatch = createEventDispatcher();
-    onMount(() => {
+   
 
-        getPDF();
+     let pdfDoc;
+     let url;
+   
+    onMount(() => {
+        console.log("SIGNATURE PAD");
+      
 
         signaturePad = new SignaturePad(canvas, {
             // It's Necessary to use an opaque color when saving image as JPEG;
@@ -28,42 +31,41 @@
            
     })
 
-    async function getPDF() {
-        if(pdf){
-            const url = `${main}${pdf}`;
-            console.log(url);
-            const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
-            const pdfDoc = await PDFDocument.load(existingPdfBytes);
-
-             const pdfBytes = await pdfDoc.save();
-              download(pdfBytes, pdf, "application/pdf");
-        }
-       
-    }
+   
 
     function onClear(){
         signaturePad.clear();
     }
 
-    function onGenerate(){
+    async function onGenerate(){
 
         if(!signaturePad.isEmpty()) {
-             const image = signaturePad.toDataURL()
-
-            var windowContent = '<!DOCTYPE html>';
-            windowContent += '<html>'
-            windowContent += '<head><title>Address Letter</title></head>';
-            //windowContent += '<style>img {position: absolute;} </style>'
-            windowContent += '<body>'
-            windowContent += '<img src="' + image + '">';
-            windowContent += '</body>';
-            windowContent += '</html>';
-            var printWin = window.open('','_blank');
-            printWin.document.open();
-            printWin.document.write(windowContent);
+             console.log("bytes");
             
-            printWin.focus();
-            printWin.print();
+  
+              url = `${main}${pdf}`;
+              console.log(url);
+             const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
+            pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes)
+
+             const image = signaturePad.toDataURL().split(",");
+
+             const arrayBuffer = Uint8Array.from(atob(image[1]), c => c.charCodeAt(0))
+             const pngImage = await pdfDoc.embedPng(arrayBuffer)
+             const pngDims = pngImage.scale(0.5);
+
+              const pages = pdfDoc.getPages()
+              const page = pages[0];
+
+              page.drawImage(pngImage, {
+              x: page.getWidth() / 2 - pngDims.width / 2 + 75,
+              y: page.getHeight() / 2 - pngDims.height + 250,
+              width: pngDims.width,
+              height: pngDims.height,
+            })
+
+             const pdfBytes = await pdfDoc.save()
+             download(pdfBytes, pdf, "application/pdf");
         }
        
     }
@@ -183,8 +185,8 @@ canvas {
       <div class="signature-pad--actions">
         <div>
           <button on:click={onClear} type="button" class="button clear" data-action="clear">Clear</button>
-          <p><input type="checkbox" /> English </p>
-          <p><input type="checkbox" /> Spanish </p>
+          <p><input type="checkbox" /> English Letter</p>
+          <p><input type="checkbox" /> Spanish Letter</p>
         </div>
         <div>
           <p><input type="checkbox" /> I consent to use Electronic Records and Signatures </p>

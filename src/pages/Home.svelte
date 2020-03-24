@@ -1,10 +1,46 @@
 <script>
+    import {onMount} from "svelte";
     import Carousel from "../components/Carousel.svelte";
     import RoundCard from "../components/RoundCard.svelte";
     import Header from "../components/Header.svelte";
 	import Footer from "../components/Footer.svelte";
     import Wrapper from "../components/Wrapper.svelte";
- 
+    
+
+    onMount(() => {
+       
+            lazyLoadingJS();
+    })
+
+    async function lazyLoadingJS() {
+         const scripts = document.getElementsByTagName("script");
+        const size = scripts.length;
+        let found = false;
+
+          for(var i = 0; i < size; i++){
+            
+            if(scripts[i].src.indexOf("pdf-lib.min.js") > 0){
+                found = true;
+                break;
+            }
+        }
+
+        if(!found){
+            console.log("NOT FOUND");
+            console.time("loading")
+            const url = "https://unpkg.com/pdf-lib/dist/pdf-lib.min.js";
+            var fileref=document.createElement('script')
+            fileref.setAttribute("type","text/javascript")
+            fileref.setAttribute("src", url);
+
+            fileref.onload = (e) => {
+                console.timeEnd("loading");
+            }
+
+            document.getElementsByTagName("head")[0].appendChild(fileref);
+        }
+    }
+
 </script>
 <style>
     .flex{
