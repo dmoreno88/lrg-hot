@@ -20,13 +20,13 @@
         signaturePad = new SignaturePad(canvas, {
             // It's Necessary to use an opaque color when saving image as JPEG;
             // this option can be omitted if only saving as PNG or SVG
-            backgroundColor: 'rgb(255, 255, 255)'
+           // backgroundColor: 'rgb(255, 255, 255)'
          });
 
            
 
             window.onresize = resizeCanvas;
-
+            resizeCanvas();
             dispatch("ready");
            
     })
@@ -40,11 +40,10 @@
     async function onGenerate(){
 
         if(!signaturePad.isEmpty()) {
-             console.log("bytes");
             
-  
+      
               url = `${main}${pdf}`;
-              console.log(url);
+             
              const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
             pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes)
 
@@ -52,19 +51,23 @@
 
              const arrayBuffer = Uint8Array.from(atob(image[1]), c => c.charCodeAt(0))
              const pngImage = await pdfDoc.embedPng(arrayBuffer)
-             const pngDims = pngImage.scale(0.5);
-
+             const pngDims = pngImage.scale(0.2);
+              pdfDoc.removePage(1);
               const pages = pdfDoc.getPages()
               const page = pages[0];
 
               page.drawImage(pngImage, {
-              x: page.getWidth() / 2 - pngDims.width / 2 + 75,
-              y: page.getHeight() / 2 - pngDims.height + 250,
+              x: (page.getWidth() / 2),
+              y: 190,
               width: pngDims.width,
               height: pngDims.height,
             })
 
+            console.log("WIDTH", page.getWidth());
+            console.log("HEIGHT", page.getHeight() - 250);
+
              const pdfBytes = await pdfDoc.save()
+             console.log(pdfBytes);
              download(pdfBytes, pdf, "application/pdf");
         }
        
