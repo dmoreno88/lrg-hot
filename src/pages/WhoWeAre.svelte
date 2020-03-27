@@ -209,109 +209,86 @@
 <div class="flex-container">
             
 
-            <h1><i>Know the capabilities of the device you are using.</i></h1>
-            <b><p>9-1-1 can be contacted from any device that can 
-            make phone calls (traditional landline, cell, VoIP), but the callback 
-            and location information that accompanies your call to the 9-1-1 center 
-            can vary drastically amongst technologies and between geographic regions. 
-            LRGVDC 9-1-1 and telecommunications professionals are hard at work to make sure 
-            9-1-1 works the same on all devices.</p>
+            <h1><center>History of the LRGVDC Emergency Communication Division</center></h1>
+            <p><b>1967 </b>- the President's Commission on Law Enforcement and Administration of Justice recommended that a "single number should be established" nationwide for reporting emergency situations. 
+               <p><b> 1987 </b>- HB911 was signed into law on May 28, 1987, which established a statewide 9-1-1 emergency communication system. (now called Texas Health and Safety Code, Chapter 771, Subtitle B. Emergencies) HB911 required the Texas Regional Planning Commissions to develop regional implementation plans.
+               <p><b> 1989 </b>- LRGVDC Board of Directors recognizes HB 9-1-1 on May 25, 1989, and began the process of developing a Strategic Plan; consequently, establishing the Emergency Communication Division within the LRGVDC.
+               <p><b> 1990 </b>- The first 9-1-1 service agreement is established with CSEC for Hidalgo and Willacy County. 
+               <p><b> 1994 </b>- The LRGVDC Emergency Communication Division is given the responsibility and authority to be the addressing entity for Hidalgo and Willacy County. 
+               <p><b> 1996-2005 </b>- LRGVDC Emergency Communication Division strengthen the 9-1-1 infrastructure. 
+               <p><b> 2006 </b>- Geographic Information Systems (GIS) was implemented to enhance and govern the 9-1-1 systems.
+               <p><b> 2016 </b>- Text-to-9-1-1 is completely implemented and deployed in Hidalgo and Willacy Counties.
+               <p><b> Presently </b>- 
+</div>             
+            <h1><center>Emergency Communication Programs</center></h1>
 
-            </b>
-             
-            
-            <div class="grid-container-2">
-                   <div class="asset-video">
- 
-                        {#if karisVideo}
-                            <VideoPlayer on:click="{()=>{karisVideo = false;}}"  src="{karisLink}" />
-                        {:else}
-                            <img  on:click="{()=>{karisVideo=!karisVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/Karis_law_cover_photo.png" alt="Kari Photo" />
-                        {/if}
-                    </div>
+                    <div class="grid-container-2">
+                   <div class="center-image">
+                        <img class="imgResponsive" src="/build/assets/pages/pubed/PUB-ED.gif" alt="GIS Photo" />
+                   </div>
 
-                    <div>
-                 
-                     <h1><i><center>Kari's Law</center></i></h1>
-                        <b>
-                            <p> On May 15, 2015, Governor Abbott signed <a href="https://www.capitol.state.tx.us/tlodocs/84R/billtext/html/SB00788F.htm">Senate Bill 788 </a>(Texas Kari's Law). The law represents the culmination of 
-                            efforts in the aftermath of the murder of Kari Hunt in a motel room in Marshall, Texas. Ms. Hunt’s 9-year-old daughter 
-                            tried to call 9-1-1 for help four times from the motel room phone. 
-                            
-                            <p> The call never went through because she did not know 
-                            to dial “9” for an outbound line before dialing “9-1-1.” On March 1, 2016, Commission on State Emergency Communications 
-                            <a href="https://texreg.sos.state.tx.us/public/readtac$ext.TacPage?sl=R&app=9&p_dir=&p_rloc=&p_tloc=&p_ploc=&pg=1&p_tac=&ti=1&pt=12&ch=251&rl=16">Rule 251.16 </a>adopted to implement Texas Kari’s Law went into effect. 
-                            Passed on February 16, 2018, Kari's Law requires multiple telephone line systems to have direct access to 9-1-1 without 
-                            having to press an additional digit such as a "9" or a "1" to make an outgoing call. 
+                   <div>
+                        <h1><i><center>Public Education</center></i></h1>
+                        <b><p>  The primary function of our Mapping Program is to process spatial data through Geographic Information Systems (GIS) technology. 
+                                The Mapping Program works on correcting the discrepancies between the Master Street Address Guide and our GIS maps.
+                                Mapping updates our road centerlines, address points and jurisdictional boundaries as needed to update our 9-1-1 system at the Public Safety Answering Points (PSAP).
                         </p></b>
-                
+                    </div>
+                </div>
+                    
+            <div class="grid-container-2">
+                   <div>
+                        <h1><i><center>Database</center></i></h1>
+                         <b><p>  The primary function of our Mapping Program is to process spatial data through Geographic Information Systems (GIS) technology. 
+                                The Mapping Program works on correcting the discrepancies between the Master Street Address Guide and our GIS maps.
+                                Mapping updates our road centerlines, address points and jurisdictional boundaries as needed to update our 9-1-1 system at the Public Safety Answering Points (PSAP).
+                        </p></b>
+                   </div>
+                   <div class="center-image">
+                        <img class="imgResponsive" src="/build/assets/pages/pubed/Database.gif" alt="GIS Photo" />
+                   </div>
+            </div>
+
+            <div class="grid-container-2">
+                   <div class="center-image">
+                        <img class="imgResponsive" src="/build/assets/pages/pubed/SYSTEMS.gif" alt="GIS Photo" />
+                   </div>
+
+                   <div>
+                        <h1><i><center>Systems & PSAP Operations Program</center></i></h1>
+                        <b><p>  Staying ahead of threats are ever more sophisticated and has its ongoing challenges. With the pervasive integration and sharing of data between multiple agencies, sites and/or systems; the threats and vulnerabilities have drastically increased. </p></b>
+                        <b><p>  SystemS & PSAP Operations Program first step in staying ahead of threats is assessing data and setting priorities. New product paradigms are being designed and implemented by the PSAP community at a rapid pace. </p></b>
+                        <b><p>  Today's call-centers are challenged to keep pace with the rapid shifts in technology. These challenges require innovative solutions and emphasize the necessity for truly secure computing environments in today’s PSAP.  </p></b>                 
 
                     </div>
+            </div>
 
-
-                {#if mobileAppear}
-                     <div class="mobile-flex">
-                         <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
+             <div class="grid-container-2">
+                   <div>
+                        <h1><i><center>Location Validation</center></i></h1>
+                        <b><p>  
                             The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies and others agenices within the region to ensure 
                             the 9-1-1 physical address is established. <br><br>
                             Our responsibility consist of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo
                             and Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data. 
+                        </p></b>
+                   </div>
+                   <div class="center-image">
+                        <img class="imgResponsive" src="/build/assets/pages/pubed/LOCATION_VALIDATION.gif" alt="GIS Photo" />
+                   </div>
+            </div>
 
-                         </div>
-                
-                        <div class="asset-video">
-                            {#if lvVideo}
-                                    <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
-                            {:else}
-                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/lv_banner.jpg" alt="Lv banner" />
-                            {/if}
-                        
-                        </div>         
-                  </div>
-                {:else}
-                        <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
-                            The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies and others agenices within the region to ensure 
-                            the 9-1-1 physical address is established. <br><br>
-                            Our responsibility consist of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo
-                            and Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data. 
+            <div class="grid-container-2">
+                   <div class="center-image">
+                        <img class="imgResponsive" src="/build/assets/pages/pubed/GIS.gif" alt="GIS Photo" />
+                   </div>
 
-                         </div>
-                
-                        <div class="asset-video">
-                            {#if lvVideo}
-                                    <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
-                            {:else}
-                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/lv_banner.jpg" alt="Lv banner" />
-                            {/if}
-                        </div> 
-                {/if}
-                 
-                   
-                
-                <div class="asset-video video-top">
-        
-                                     
-                    {#if txtVideo}
-                        <VideoPlayer on:click="{()=>{txtVideo = false;}}"  src="{txtLink}" />
-                    {:else}
-                        <img loading="lazy" on:click="{()=>{txtVideo=!txtVideo}}" class="imgResponsive" src="/build/assets/pages/pubed/text_to_911_cover_photo.png" alt="text to 911 cover photo" />
-                    {/if}                    
-                </div>
-            
-                    <div class="bannerMsg"><h2><i><center>Text-to-911 is availble in the <br>Lower Rio Grande Valley</center></i></h2>
-                         In 2014, the four largest wireless service providers (AT&T, Sprint, T-Mobile and Verizon), in conjunction with the Association of Public Safety 
-                         Communication Officials (APCO) and the National Emergency Number Association (NENA), agreed to provide all 911 call centers with the ability to receive texts. 
-                        
-                    </div>        
-        
-        </div>
-
-
-
-            
-
-                
-        </div>
+                   <div>
+                        <h1><i><center>Geographic Information Systems (GIS)</center></i></h1>
+                        <b><p>  The Emergency Communication Division utilize GIS to support emergency response, economic development, and project planning throughout our region. </p></b>
+                        <b><p>  The GIS program is also tasked with development of solutions for member entities involving GIS and various forms of technology. </p></b>
+                   </div>
+            </div>
            
 
 </Wrapper>
