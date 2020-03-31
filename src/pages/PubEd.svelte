@@ -4,19 +4,15 @@
      import Header from "../components/Header.svelte";
 	 import Footer from "../components/Footer.svelte";
      import Wrapper from "../components/Wrapper.svelte";
-
      let txtVideo = false;
      let karisVideo = false;
      let lvVideo = false;
-
      let lvLink = "./build/assets/videos/lv_psa.mp4";
      let karisLink = "./build/assets/videos/karis_law.mp4";
      let txtLink = "./build/assets/videos/txt_to_911.mp4";
      
      let mobileAppear = false;
-
     onMount(() => {
-
         mobileAppear = (window.innerWidth < 1290) ? true : false;
         window.onresize = (e) => {
             let target = e.target || e.srcElement;
@@ -30,12 +26,11 @@
 </script>
 <style>
     h1 {
+        color: #2B4988;
         color: rgb(226, 28, 13);
         
     }
-    h2{
-        color: rgb(226, 28, 13);
-    }
+   
     h1 i {
         color: #707070;
     }
@@ -57,9 +52,6 @@
         padding-left: 15px; 
                 
     }
-
-
-
     button {
         border-radius: 16px;
         color:white;
@@ -67,10 +59,12 @@
         cursor: pointer;
         text-align: center;
         width: 190px;
+        margin-top: 20px;
         margin-top: 25px;
         margin-left: 200px;
     }
     button:hover {
+       background:rgb(12, 37, 90);
        background:rgb(226, 28, 13);
     }
     .grid-container-3 {
@@ -95,6 +89,7 @@
     }
     #imgCon {
         max-width: 68vh;
+        height: 420px; 
         height: 500px; 
         border: 2px solid #143975!important;
         padding: 1px;       
@@ -119,7 +114,6 @@
         font-weight: bold;
         font-size: 1.29rem;
     }
-
     #innerComms2{
         
         margin-top: 25px;      
@@ -129,22 +123,24 @@
         display: -webkit-flex;
         display: flex;
         justify-content: center;
-
     }
     #imgCon2 {
         max-width: 68vh;
         height: 210px; 
         border: 0px solid #ccc!important;
         padding-right: 4px;   
-
     }
    
    .title2 {
-
+       color: red !important;
        color: #DF744A !important;
    }
+   .asset-video{
+       width: 590px;
+       height: 375px;
+   }
+    
    
-
     @media only screen and (max-width: 1600px) {
      
       #imgCon {
@@ -173,16 +169,31 @@
      #btnEvent{
             text-align: center;
         }
-
         button{
              margin-top: 0;
         }
     }
-
      @media only screen and (max-width: 1290px) {
+         .grid-container-2{
+             display: flex;
+             flex-direction: column;
+             justify-content: space-around;
+         }
+         .asset-video
+         {
+             text-align: center;
+             margin: 0 auto;
+         }
+         .video-top{
+             margin-top: 30px;
+         }
+        .mobile-flex{
+            display: flex;
+            flex-direction: column-reverse;
+        }
+       
       
      }
-
    
 </style>
 <Header   />   
@@ -201,7 +212,6 @@
                     </p>
                     <p>Schedule your event today!</p>
                 </b>
-
             
             <!-- <div id="titleServe">We Serve</div> -->
             <div id="innerComms2">
@@ -216,34 +226,145 @@
                 <div class="title2"><h4><center>JOSH</center></h4>
                     <img id="imgCon2"  src="/build/assets/pages/pubed/josh_mascot.jpg"  alt="Josh" />
                 </div>
-                
-            </div>
 
- 
             </div>
-            <div></div>
-            
-            <div>
-            
-                <div class="center-image">
-                   <img id="imgCon"  src="/build/assets/pages/pubed/main-photo.jpg"  alt="Kids with mascot" />
 
                     <div id="btnEvent">
                        <button on:click="{()=>{window.app.navigate('/EventRequest')}}">EVENT REQUEST</button>
                     </div>
 
+            </div>
+            <div></div>
+
+            <div>
+
+                <div class="center-image">
+                   <img id="imgCon"  src="/build/assets/pages/pubed/main-photo.jpg"  alt="Kids with mascot" />
                 </div>
-            
+
+                <div class="flex-container"><b>
+            <h1><i>Know WHEN to call 9-1-1.</i></h1>
+            <b><p>9-1-1 is for emergencies only. You should only be dialing 9-1-1 if someone is hurt or in danger, or
+                  if you are in immediate need of police, fire, or medical assistance.
+               </p>
+
+        <p>
+            Knowing where you are is the most important information you can provide as a 9-1-1 caller, so be sure to be aware of 
+            your surroundings. Make a real effort to be as detailed as possible.
+        </p>
+                    <div id="btnEvent">
+                       <button on:click="{()=>{window.app.navigate('/EventRequest')}}">EVENT REQUEST</button>
+                    </div>
+
+            </b>
+                </div>
+
             </div>
         </div>
-        
 
-<hr class="type_1" />
-       
-        
-        </div>
-                
 
-           
+<div class="flex-container">
+
+
+            <h1><i>Know the capabilities of the device you are using.</i></h1>
+            <b><p>9-1-1 can be contacted from any device that can 
+            make phone calls (traditional landline, cell, VoIP), but the callback 
+            and location information that accompanies your call to the 9-1-1 center 
+            can vary drastically amongst technologies and between geographic regions. 
+            LRGVDC 9-1-1 and telecommunications professionals are hard at work to make sure 
+            9-1-1 works the same on all devices.</p>
+
+            </b>
+
+
+            <div class="grid-container-2">
+                   <div class="asset-video">
+
+                        {#if karisVideo}
+                            <VideoPlayer on:click="{()=>{karisVideo = false;}}"  src="{karisLink}" />
+                        {:else}
+                            <img  on:click="{()=>{karisVideo=!karisVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/Karis_law_cover_photo.png" alt="Kari Photo" />
+                        {/if}
+                    </div>
+
+                    <div>
+
+                     <h1><i><center>Kari's Law</center></i></h1>
+                        <b>
+                            <p> On May 15, 2015, Governor Abbott signed <a href="https://www.capitol.state.tx.us/tlodocs/84R/billtext/html/SB00788F.htm">Senate Bill 788 </a>(Texas Kari's Law). The law represents the culmination of 
+                            efforts in the aftermath of the murder of Kari Hunt in a motel room in Marshall, Texas. Ms. Hunt’s 9-year-old daughter 
+                            tried to call 9-1-1 for help four times from the motel room phone. 
+
+                            <p> The call never went through because she did not know 
+                            to dial “9” for an outbound line before dialing “9-1-1.” On March 1, 2016, Commission on State Emergency Communications 
+                            <a href="https://texreg.sos.state.tx.us/public/readtac$ext.TacPage?sl=R&app=9&p_dir=&p_rloc=&p_tloc=&p_ploc=&pg=1&p_tac=&ti=1&pt=12&ch=251&rl=16">Rule 251.16 </a>adopted to implement Texas Kari’s Law went into effect. 
+                            Passed on February 16, 2018, Kari's Law requires multiple telephone line systems to have direct access to 9-1-1 without 
+                            having to press an additional digit such as a "9" or a "1" to make an outgoing call. 
+                        </p></b>
+
+
+                    </div>
+
+
+                {#if mobileAppear}
+                     <div class="mobile-flex">
+                         <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
+                            The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies 
+                            and other agencies within the region to ensure the 9-1-1 physical address is established. <br><br>
+                            Our responsibility consists of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo and 
+                            Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data.
+
+                         </div>
+
+                        <div class="asset-video">
+                            {#if lvVideo}
+                                    <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
+                            {:else}
+                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/lv_banner.jpg" alt="Lv banner" />
+                            {/if}
+
+                        </div>         
+                  </div>
+                {:else}
+                        <div class="bannerMsg"><h2><i><center>9-1-1 Addressing</center></i></h2>
+                            The LRGVDC 9-1-1 Addressing Department work in partnership with the United States Postal Service (USPS), telephone companies 
+                            and other agencies within the region to ensure the 9-1-1 physical address is established. <br><br>
+                            Our responsibility consists of administration, maintenance, and assurance of all geographic information pertinent to Hidalgo and 
+                            Willacy County, and we're accountable for ensuring orderly assignment and maintenance of all addresses and address data.
+                         </div>
+
+                        <div class="asset-video">
+                            {#if lvVideo}
+                                    <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
+                            {:else}
+                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/911TIPS_COVER.png" alt="Lv banner" />
+                            {/if}
+                        </div> 
+                {/if}
+
+
+
+                <div class="asset-video video-top">
+
+
+                    {#if txtVideo}
+                        <VideoPlayer on:click="{()=>{txtVideo = false;}}"  src="{txtLink}" />
+                    {:else}
+                        <img loading="lazy" on:click="{()=>{txtVideo=!txtVideo}}" class="imgResponsive" src="/build/assets/pages/pubed/text_to_911_cover_photo.png" alt="text to 911 cover photo" />
+                    {/if}                    
+                </div>
+
+                    <div class="bannerMsg"><h2><i><center>Text-to-911 is availble in the <br>Lower Rio Grande Valley</center></i></h2>
+                         In 2014, the four largest wireless service providers (AT&T, Sprint, T-Mobile and Verizon), in conjunction with the Association of Public Safety 
+                         Communication Officials (APCO) and the National Emergency Number Association (NENA), agreed to provide all 911 call centers with the ability to receive texts. 
+
+                    </div>        
+
+
+
+
+
+
+
 </Wrapper>
 <Footer />
