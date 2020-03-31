@@ -60,10 +60,9 @@
     .imgResponsive {
         width: 590px;
         height: 375px;
+        align-self: center;
     }
-    .imgResponsive:hover {
-        cursor: pointer;
-    }
+ 
   
 
    
@@ -107,24 +106,16 @@
 </style>
 <Header   />   
     <Wrapper>
-
-        
-
 <div class="flex-container">
             
 
-            <h1><center>Sorry, we're doing some work on the site</center></h1>
+            <h1><center>Sorry, we're doing some work on this page</center></h1>
                     <div class="grid-container-2">
-                   <div class="center-image">
-                        <img class="imgResponsive" src="/build/assets/pages/pubed/UnderConstruction.jpg" alt="Under Construction" />
-                              <p><b>Thank you for being patient. We are doing some work on the site and will be back shortly.
-                                </b>
-                   </div>
-
- 
 </div>             
-
-
-
+                   <div class="center-image">
+                       <center><img class="imgResponsive" src="/build/assets/pages/pubed/UnderConstruction.jpg" alt="Under Construction" /> 
+                              <center> <h1> Thank you for being patient.</h1></center> 
+                                
+                   </div>
 </Wrapper>
 <Footer />
