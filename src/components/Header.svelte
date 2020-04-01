@@ -245,15 +245,16 @@ img{
           <div class="dropdown"><button class="dropbtn">SERVICES </button>
           <div class="dropdown-content">
               <a href="AddressRequest">ADDRESS REQUEST</a>
-              <a on:click|preventDefault="{()=>{window.app.navigate('/RecorderRequest')}}"  href="RecorderRequest">RECORDING REQUEST</a>
+              <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}"  href="UnderConstruction">RECORDING REQUEST</a>
               <a href="EventRequest">PUBLIC EDUCATION REQUEST</a>
             </div>
           </div> 
           
           <div class="dropdown"><button class="dropbtn">TRAININGS </button>
           <div class="dropdown-content">
-              <a href="Train1">Link 1</a>
-              <a href="Train2">Link 2</a>
+          <!-- <a href="Train1">Link 1</a> -->
+          <!-- <a href="Train1">Link 1</a> -->
+
           </div>
           </div> 
 
@@ -264,7 +265,7 @@ img{
           </div>
           </div> 
 
-          <a href="Contact">CONTACT</a>
+           <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}" href="#UnderConstruction">Contact</a>
 
     </div>
 
