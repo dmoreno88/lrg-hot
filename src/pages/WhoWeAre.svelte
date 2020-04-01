@@ -260,7 +260,7 @@
                    <div>
                         <h1><i><center>Systems & PSAP Operations Program</center></i></h1>
                         <b><p>  Staying ahead of threats are ever more sophisticated and has its ongoing challenges. With the pervasive integration and sharing of data between multiple agencies, sites and/or systems; the threats and vulnerabilities have drastically increased. </p></b>
-                        <b><p>  SystemS & PSAP Operations Program first step in staying ahead of threats is assessing data and setting priorities. New product paradigms are being designed and implemented by the PSAP community at a rapid pace. </p></b>
+                        <b><p>  Systems & PSAP Operations Program first step in staying ahead of threats is assessing data and setting priorities. New product paradigms are being designed and implemented by the PSAP community at a rapid pace. </p></b>
                         <b><p>  Today's call-centers are challenged to keep pace with the rapid shifts in technology. These challenges require innovative solutions and emphasize the necessity for truly secure computing environments in today’s PSAP.  </p></b>                 
 
                     </div>
