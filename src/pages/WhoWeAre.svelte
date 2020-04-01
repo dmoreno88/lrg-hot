@@ -218,7 +218,7 @@
                <p><b> 1996-2005 </b>- LRGVDC Emergency Communication Division strengthen the 9-1-1 infrastructure. 
                <p><b> 2006 </b>- Geographic Information Systems (GIS) was implemented to enhance and govern the 9-1-1 systems.
                <p><b> 2016 </b>- Text-to-9-1-1 is completely implemented and deployed in Hidalgo and Willacy Counties.
-               <p><b> Presently </b>- 
+               <p><b> Presently </b>- Next-Generation 911 (NG 911), which refers to the transition in public safety to broadband technology and multimedia-enabled operations that will enhance 911 capabilities for PSAPs and first responders.
 </div>             
             <h1><center>Emergency Communication Programs</center></h1>
 
@@ -229,20 +229,23 @@
 
                    <div>
                         <h1><i><center>Public Education</center></i></h1>
-                        <b><p>  The primary function of our Mapping Program is to process spatial data through Geographic Information Systems (GIS) technology. 
-                                The Mapping Program works on correcting the discrepancies between the Master Street Address Guide and our GIS maps.
-                                Mapping updates our road centerlines, address points and jurisdictional boundaries as needed to update our 9-1-1 system at the Public Safety Answering Points (PSAP).
-                        </p></b>
+                        <b><p>  We provide presentations to our local cities, school, daycares, Emergency Medical Services (EMS), Fire and Police Departments within Hidalgo and Willacy County.</p></b>
+                        <b><p>  We promote and educate the public on how to correctly use the 9-1-1 system. By using multi-media, we demonstrate the proper way to call 9-1-1 and what is considered a 9-1-1 emergency call.</p></b>
+
                     </div>
                 </div>
                     
             <div class="grid-container-2">
                    <div>
                         <h1><i><center>Database</center></i></h1>
-                         <b><p>  The primary function of our Mapping Program is to process spatial data through Geographic Information Systems (GIS) technology. 
-                                The Mapping Program works on correcting the discrepancies between the Master Street Address Guide and our GIS maps.
-                                Mapping updates our road centerlines, address points and jurisdictional boundaries as needed to update our 9-1-1 system at the Public Safety Answering Points (PSAP).
-                        </p></b>
+                         <b><p>  Database Program has the responsibility of updating the Texas State 9-1-1 database, along with a collection of diverse services:</p></b>
+                                <ul>
+                                <li><b><p>Maintain and update the Master Street Address Guide (MSAG)</p></b></li>
+                                <li><b><p>Establish the telephone numbers in the Texas State 9-1-1 database have a valid address</p></b></li>
+                                <li><b><p>Ensure that all information is accurately maintained to accurately route calls</p></b></li>
+                                <li><b><p>Manage telephone errors that exist and/or emerge daily</p></b></li>
+                                </ul>
+
                    </div>
                    <div class="center-image">
                         <img class="imgResponsive" src="/build/assets/pages/pubed/Database.gif" alt="GIS Photo" />
@@ -285,8 +288,10 @@
 
                    <div>
                         <h1><i><center>Geographic Information Systems (GIS)</center></i></h1>
-                        <b><p>  The Emergency Communication Division utilize GIS to support emergency response, economic development, and project planning throughout our region. </p></b>
-                        <b><p>  The GIS program is also tasked with development of solutions for member entities involving GIS and various forms of technology. </p></b>
+                        <b><p>  The Emergency Communication Division, GIS Program assists Hidalgo AND Willacy County with mapping, validation and data processing associated with rural addressing for 9-1-1.  </p></b>
+                        <b><p>  Each county has a database maintenance/addressing coordinator that is responsible for assigning addresses to new structures and mapping new roads in the rural part of the
+                                counties. Additionally, each county coordinator is responsible for maintaining the Master Street Address Guide (MSAG), updating the county maps with new roads and driveway 
+                                point data, coordinating changes with municipalities and correcting errors in the 9-1-1 database. </p></b>
                    </div>
             </div>
            
