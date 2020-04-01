@@ -2,10 +2,12 @@
     import SignaturePad from "signature_pad";
     import {onMount, createEventDispatcher} from "svelte";
     export let pdf;
+    export let fname;
 
     let canvas;
     let signaturePad;
     let main = "https://gis.lrgvdc911.org/LETTER_TEMPLATES/"
+    let language;
 
     const dispatch = createEventDispatcher();
    
@@ -52,22 +54,33 @@
              const arrayBuffer = Uint8Array.from(atob(image[1]), c => c.charCodeAt(0))
              const pngImage = await pdfDoc.embedPng(arrayBuffer)
              const pngDims = pngImage.scale(0.2);
-              pdfDoc.removePage(1);
-              const pages = pdfDoc.getPages()
-              const page = pages[0];
+             
+              let pages = pdfDoc.getPages()
+              let index = (language == 0) ? 1 : 0;
+              let page = pages[index];
+              
+             
+                 page.drawImage(pngImage, {
+                  x: (page.getWidth() / 2),
+                  y: 190,
+                  width: pngDims.width,
+                  height: pngDims.height,
+                })
 
-              page.drawImage(pngImage, {
-              x: (page.getWidth() / 2),
-              y: 190,
-              width: pngDims.width,
-              height: pngDims.height,
-            })
+              
+                page.drawText(fname,  {x: (page.getWidth() / 2),
+                 y: 150,
+                  size: 20,
+                  lineHeight: 24,
+                })
 
-            console.log("WIDTH", page.getWidth());
-            console.log("HEIGHT", page.getHeight() - 250);
+              
+             
+              pdfDoc.removePage(language);
+          
 
              const pdfBytes = await pdfDoc.save()
-             console.log(pdfBytes);
+            
              download(pdfBytes, pdf, "application/pdf");
         }
        
@@ -175,6 +188,10 @@ canvas {
   margin-top: 8px;
 }
 
+input[type="radio"] {
+  color: red;
+}
+
 
 </style>
 <div id="signature-pad" class="signature-pad">
@@ -188,12 +205,12 @@ canvas {
       <div class="signature-pad--actions">
         <div>
           <button on:click={onClear} type="button" class="button clear" data-action="clear">Clear</button>
-          <p><input type="checkbox" /> English Letter</p>
-          <p><input type="checkbox" /> Spanish Letter</p>
+          <p><input bind:group={language} value={1} name="language" type="radio" /> English Letter</p>
+          <p><input bind:group={language} value={0} name="language" type="radio" /> Spanish Letter</p>
         </div>
         <div>
           <p><input type="checkbox" /> I consent to use Electronic Records and Signatures </p>
-          <button on:click={onGenerate} type="button" class="button save" >Preview Online</button>
+          <button on:click={onGenerate} type="button" class="button save" >Download Letter</button>
           <button on:click={onGenerate} type="button" class="button save" >E-mail Letter</button>
         </div>
       </div>
