@@ -243,7 +243,7 @@
                 </div>
 
                 <div class="flex-container"><b>
-            <h1><i>Know WHEN to call 9-1-1.</i></h1>
+            <h1><i>Know WHEN to call 9-1-1</i></h1>
             <b><p>9-1-1 is for emergencies only. You should only be dialing 9-1-1 if someone is hurt or in danger, or
                   if you are in immediate need of police, fire, or medical assistance.
                </p>
