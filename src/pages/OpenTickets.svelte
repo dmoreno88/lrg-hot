@@ -237,7 +237,7 @@
             <AuthorizeLetter on:loading={onLoading} on:passed={onSignature} on:invalid={onInvalid} {ticket} on:close="{(e)=>{authorize = e.dislay}}" {fname} />
         {/if}
         {#if signature}
-             <SignaturePad {pdf} bind:this={pad} on:ready={onReadyPad} />
+             <SignaturePad {fname} {pdf} bind:this={pad} on:ready={onReadyPad} />
         {/if}
 
         <div class="input-group">

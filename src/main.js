@@ -28,6 +28,10 @@ app.path('/WhoWeAre', async ctx=>{
     ctx.mount(Chunk(()=> import("./pages/WhoWeAre.svelte")));
 });
 
+app.path('/UnderConstruction', async ctx=>{
+    ctx.mount(Chunk(()=> import("./pages/UnderConstruction.svelte")));
+});
+
 app.path('/ContactList', async ctx=>{
     ctx.mount(Chunk(()=> import("./pages/ContactList.svelte")));
 });

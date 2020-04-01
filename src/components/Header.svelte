@@ -252,8 +252,8 @@ img{
           
           <div class="dropdown"><button class="dropbtn">TRAININGS </button>
           <div class="dropdown-content">
-              <a href="Train1">Link 1</a>
-              <a href="Train2">Link 2</a>
+              <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}" href="Train1">Link 1</a>
+              <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}" href="Train2">Link 2</a>
           </div>
           </div> 
 
