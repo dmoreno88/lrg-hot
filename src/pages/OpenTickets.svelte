@@ -86,7 +86,7 @@
 
      async function onGenerateLetter() {
         let index = getRandomInt(4); 
-        console.log(window.listServers);
+      
         let server = window.listServers[index];
         let port   = listPorts[index];
         console.log(`${server} : ${port}`);
@@ -102,9 +102,7 @@
         form.append("propid", ifPropertyId());
         form.append("addr1", selected.full_address);
         form.append("addr2", selected.msag_comm);
-        console.log(listServers[index]);
-        console.log(listPorts[index]);
-
+       
        fetch(genLetter, {method: 'POST', body: form}).then((response) =>{
            return response.json()
        }).then((data) => {
@@ -158,7 +156,7 @@
     }
 
     function onSignature(){
-        ticketsLoading = true;
+        
         signature = true;
         authorize = false;
         onGenerateLetter()
@@ -171,8 +169,13 @@
        
     }
 
-    function onLoading(){
-        ticketsLoading = true;
+    function onLoading(e){
+        if(e){
+            ticketsLoading = e.detail;
+        }else{
+            ticketsLoading = true;
+        }
+        
     }
 
 </script>
@@ -237,7 +240,7 @@
             <AuthorizeLetter on:loading={onLoading} on:passed={onSignature} on:invalid={onInvalid} {ticket} on:close="{(e)=>{authorize = e.dislay}}" {fname} />
         {/if}
         {#if signature}
-             <SignaturePad {fname} {pdf} bind:this={pad} on:ready={onReadyPad} />
+             <SignaturePad on:loading={onLoading} {fname} {pdf} bind:this={pad} on:ready={onReadyPad} />
         {/if}
 
         <div class="input-group">
@@ -278,4 +281,5 @@
         </div>
     </div>
 </Wrapper>
+<br />
 <Footer />
