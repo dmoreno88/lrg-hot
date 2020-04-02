@@ -264,7 +264,7 @@ img{
           </div>
           </div> 
 
-           <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}" href="#UnderConstruction">Contact</a>
+           <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}" href="#UnderConstruction">CONTACT</a>
 
     </div>
 
