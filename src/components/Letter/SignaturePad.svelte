@@ -3,11 +3,15 @@
     import {onMount, createEventDispatcher} from "svelte";
     export let pdf;
     export let fname;
+    export let ticket;
 
     let canvas;
     let signaturePad;
     let main = "https://gis.lrgvdc911.org/LETTER_TEMPLATES/"
     let language;
+    let errorMSG = "";
+    let animate = false;
+    let consent = false;
 
     const dispatch = createEventDispatcher();
    
@@ -25,7 +29,6 @@
            // backgroundColor: 'rgb(255, 255, 255)'
          });
 
-           
 
             window.onresize = resizeCanvas;
             resizeCanvas();
@@ -39,9 +42,38 @@
         signaturePad.clear();
     }
 
-    async function onGenerate(){
+    function checkInputs() {
+       let response = {"error" : false, "msg" : ""};
+     
 
-        if(!signaturePad.isEmpty()) {
+
+
+      if(signaturePad.isEmpty()) {
+         response.error = true;
+         response.msg = "Please sign above!";
+         return response;
+      }
+      if(!consent) {
+        response.error = true;
+        response.msg = "Please check the consent box!";
+        return response;
+      }
+      if(!language){
+        response.error  = true;
+        response.msg = "Please select a language!";
+        return response;
+      }
+
+       return response;
+    }
+
+    async function onGenerate(){
+        errorMSG = "";
+        
+        let Response = checkInputs();
+       
+        if(!Response.error) {
+           dispatch("loading", true);
             
       
               url = `${main}${pdf}`;
@@ -82,6 +114,11 @@
              const pdfBytes = await pdfDoc.save()
             
              download(pdfBytes, pdf, "application/pdf");
+             dispatch("loading", false);
+        }else{
+          animate = true;
+          errorMSG = Response.msg;
+          setTimeout(() => {animate = false}, 800);
         }
        
     }
@@ -108,26 +145,26 @@
 </script>
 <style>
     .signature-pad {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  font-size: 10px;
-  width: 100%;
-  height: 100%;
-  left: 50%;
-  margin-left: -300px;
-  max-width: 700px;
-  max-height: 460px;
-  border: 1px solid #e8e8e8;
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.08) inset;
-  border-radius: 4px;
-  padding: 16px;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    font-size: 10px;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    margin-left: -300px;
+    max-width: 700px;
+    max-height: 460px;
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.08) inset;
+    border-radius: 4px;
+    padding: 16px;
 }
 
 .signature-pad::before,
@@ -192,6 +229,30 @@ input[type="radio"] {
   color: red;
 }
 
+.error{
+   font-size: 30px;
+   color: red;
+   animation: glow 1s ease-in-out infinite alternate;
+}
+.err{
+  font-size: 30px;
+  color: red !important;
+}
+
+@-webkit-keyframes glow {
+    0% {color: rgb(163, 9, 9)}
+    25% {color: rgb(78, 0, 0)}
+    50% {color: rgb(163, 9, 9)}
+    65% {color: rgb(78, 0, 0)}
+    80% {font-size:8px; opacity:1;}
+    90% {color: rgb(78, 0, 0)}
+    100% {font-size:8px;opacity:1; }
+}
+
+p{
+  color: black;
+}
+
 
 </style>
 <div id="signature-pad" class="signature-pad">
@@ -209,10 +270,12 @@ input[type="radio"] {
           <p><input bind:group={language} value={0} name="language" type="radio" /> Spanish Letter</p>
         </div>
         <div>
-          <p><input type="checkbox" /> I consent to use Electronic Records and Signatures </p>
+          <p><input bind:value={consent} type="checkbox" /> I consent to use Electronic Records and Signatures </p>
           <button on:click={onGenerate} type="button" class="button save" >Download Letter</button>
           <button on:click={onGenerate} type="button" class="button save" >E-mail Letter</button>
         </div>
+        
       </div>
+      <p class:error={animate} class="err">{errorMSG}</p>
     </div>
   </div>
