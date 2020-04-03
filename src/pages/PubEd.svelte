@@ -252,9 +252,6 @@
             Knowing where you are is the most important information you can provide as a 9-1-1 caller, so be sure to be aware of 
             your surroundings. Make a real effort to be as detailed as possible.
         </p>
-                    <div id="btnEvent">
-                       <button on:click="{()=>{window.app.navigate('/EventRequest')}}">EVENT REQUEST</button>
-                    </div>
 
             </b>
                 </div>
@@ -359,12 +356,6 @@
                          Communication Officials (APCO) and the National Emergency Number Association (NENA), agreed to provide all 911 call centers with the ability to receive texts. 
 
                     </div>        
-
-
-
-
-
-
 
 </Wrapper>
 <Footer />

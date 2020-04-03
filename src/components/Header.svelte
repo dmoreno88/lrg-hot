@@ -252,14 +252,8 @@ img{
           
           <div class="dropdown"><button class="dropbtn">TRAININGS </button>
           <div class="dropdown-content">
-<<<<<<< HEAD
-          <!-- <a href="Train1">Link 1</a> -->
-          <!-- <a href="Train1">Link 1</a> -->
-
-=======
               <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}" href="Train1">Link 1</a>
               <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}" href="Train2">Link 2</a>
->>>>>>> 4a6a61c817aa062e172dd46aed5173a8529739c2
           </div>
           </div> 
 
@@ -270,7 +264,7 @@ img{
           </div>
           </div> 
 
-           <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}" href="#UnderConstruction">Contact</a>
+           <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}" href="#UnderConstruction">CONTACT</a>
 
     </div>
 
