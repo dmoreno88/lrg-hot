@@ -197,7 +197,7 @@ img{
 @media only screen and (max-width: 1196px) {
      .wrapper {
       display: grid;
-      grid-template-columns: 88% 12%;
+      grid-template-columns: 80% 20%;
     }
 
     .navbar{
