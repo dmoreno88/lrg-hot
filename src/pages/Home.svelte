@@ -13,7 +13,7 @@
     })
 
     async function lazyLoadingJS() {
-         const scripts = document.getElementsByTagName("script");
+        const scripts = document.getElementsByTagName("script");
         const size = scripts.length;
         let found = false;
 
