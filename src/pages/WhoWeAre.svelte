@@ -69,13 +69,6 @@
         width: 190px;
         margin-top: 20px;
     }
-    button:hover {
-       background:rgb(12, 37, 90);
-    }
-    .grid-container-3 {
-        display: grid;
-        grid-template-columns: 45% 8% 47%;
-    }
     .grid-container-2{
         display: grid;
       
@@ -88,91 +81,23 @@
     .imgResponsive:hover {
         cursor: pointer;
     }
-  
-    #btnEvent{
-        margin-top: 5px;
-    }
-    #imgCon {
-        max-width: 68vh;
-        height: 420px; 
-        border: 2px solid #143975!important;
-        padding: 1px;       
-    }
-    h2:hover{
-        color: rgb(226, 28, 13) !important;
-        cursor: pointer;
-    }
-    .bannerMsg {
-        color: #36454f;
-        padding: 15px;
-        font-weight: bold;
-        font-size: 1.29rem;
-    }
 
-    #innerComms2{
-        
-        margin-top: 25px;      
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        justify-content: center;
-
-    }
-    #imgCon2 {
-        max-width: 68vh;
-        height: 210px; 
-        border: 0px solid #ccc!important;
-        padding-right: 4px;   
-
-    }
-   
-   .title2 {
-
-       color: red !important;
-   }
-
-   .asset-video{
-       width: 590px;
-       height: 375px;
-   }
-
-
-    
 
     @media only screen and (max-width: 1600px) {
      
-      #imgCon {
-        width: 100%;
-        height: auto;
-      }
+
       .center-image{
           display: flex;
           text-align: center;
           align-content: center;
           justify-content: center;
       }
-      .grid-container-3 {
-          display: initial;
-      
-      }
        .flex-container {
             max-width: 100%;
             margin: 0;
-            padding: 30px;
-           
-        }
-         #btnEvent{
-        margin-top: 60px;
-    }
-     #btnEvent{
-            text-align: center;
+            padding: 30px;   
         }
 
-        button{
-             margin-top: 0;
-        }
     }
 
      @media only screen and (max-width: 1290px) {
@@ -182,19 +107,6 @@
              flex-direction: column;
              justify-content: space-around;
          }
-         .asset-video
-         {
-             text-align: center;
-             margin: 0 auto;
-         }
-
-         .video-top{
-             margin-top: 30px;
-         }
-        .mobile-flex{
-            display: flex;
-            flex-direction: column-reverse;
-        }
 
        
      }
