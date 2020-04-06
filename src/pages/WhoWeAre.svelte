@@ -33,9 +33,7 @@
         color: #36454f ;
         
     }
-    h3{
-        color: #36454f ;
-    }
+
     h1 i {
         color: #36454f ;
     }
@@ -54,20 +52,11 @@
         color: #36454f ;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 17px;
-        padding-left: 15px; 
-                
+        padding-left: 15px;       
     }
 
-
-
-    button {
-        border-radius: 16px;
-        color:white;
-        background: #2B4988;
-        cursor: pointer;
-        text-align: center;
-        width: 190px;
-        margin-top: 20px;
+    li p{
+        font-weight: bold;
     }
     .grid-container-2{
         display: grid;
@@ -152,10 +141,14 @@
                         <h1><i><center>Database</center></i></h1>
                          <b><p>  Database Program has the responsibility of updating the Texas State 9-1-1 database, along with a collection of diverse services:</p></b>
                                 <ul>
-                                <li><b><p>Maintain and update the Master Street Address Guide (MSAG)</p></b></li>
-                                <li><b><p>Establish the telephone numbers in the Texas State 9-1-1 database have a valid address</p></b></li>
-                                <li><b><p>Ensure that all information is accurately maintained to accurately route calls</p></b></li>
-                                <li><b><p>Manage telephone errors that exist and/or emerge daily</p></b></li>
+                                <li>
+                                    <p>Maintain and update the Master Street Address Guide (MSAG)</p></li>
+                                <li>
+                                    <p>Establish the telephone numbers in the Texas State 9-1-1 database have a valid address</p></li>
+                                <li>
+                                    <p>Ensure that all information is accurately maintained to accurately route calls</p></li>
+                                <li>
+                                    <p>Manage telephone errors that exist and/or emerge daily</p></li>
                                 </ul>
 
                    </div>
