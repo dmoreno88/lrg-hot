@@ -12,6 +12,26 @@
   function closeNav() {
     mobileNav.style.width = "0";
   }
+
+  function handleMOptions(e) {
+    e.preventDefault();
+    e.stopPropagation();
+     var children = this.childNodes;
+     var lng = children.length;
+     for(let i = 0; i < lng; i++){
+        let element = children[i]
+        if(element instanceof HTMLSpanElement) {
+           element.classList.toggle("mif-minus")
+           element.classList.toggle("mif-plus");
+        }
+        else if(element instanceof HTMLUListElement){
+          if(!element.style.display) element.style.display = "none";
+          else{
+             element.style.display = (element.style.display == "none") ? "block" : "none";
+          }
+        }
+     }
+  }
 </script>
 
 <style> 
@@ -134,7 +154,7 @@ img{
   width: 0;
   top: 0;
   right: 0;
-  background:rgba(15, 82, 186, .72);
+  background:rgba(15, 82, 186, .82);
   height: 100%;
   min-height: 968px;
   transition: 0.7s;
@@ -186,13 +206,24 @@ img{
   user-select: none;
 }
 
-.td-mobile-content li:hover{
-  cursor: pointer;
+.subMenu{
+  color: white !important;
+}
+
+  .link:hover{
+  cursor: pointer !important;
+  color: #F62817;
 }
 
 li span {
   float: right;
 }
+
+.td-mobile-content li ul{
+  padding: 20px 12px;
+}
+
+
 
 @media only screen and (max-width: 1200px) {
   .logo{
@@ -284,7 +315,7 @@ li span {
     <div class="navbar">
   
           <a on:click|preventDefault="{()=>{window.app.navigate('/')}}" href="#Home">HOME</a>
-          <a on:click|preventDefault="{()=>{window.app.navigate('/PubEd')}}" href="#PubEd">PUBLIC EDUCATION</a>
+          <a on:click|preventDefault="{()=>{window.app.navigate('/PublicEducation')}}" href="#PubEd">PUBLIC EDUCATION</a>
 
 
           <div class="dropdown"><button class="dropbtn">SERVICES </button>
@@ -320,15 +351,27 @@ li span {
         
         <div class="td-mobile-content">
           <ul>
-            <li on:click|preventDefault="{()=>{window.app.navigate('/')}}" >HOME</li>
-            <li on:click|preventDefault="{()=>{window.app.navigate('/PubEd')}}">PUBLIC EDUCATION</li>
-            <li>
+            <li class="link" on:click|preventDefault="{()=>{window.app.navigate('/')}}" >HOME</li>
+            <li class="link" on:click|preventDefault="{()=>{window.app.navigate('/PublicEducation')}}">PUBLIC EDUCATION</li>
+            <li class="link" on:click|stopPropagation={handleMOptions}>
               SERVICES
-              <span class="mif-plus"></span>
+              <span class="mif-minus"></span>
+              <ul class="subMenu">
+                <li 
+                on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction'); closeNav()}}" class="link">ADDRESS REQUEST</li>
+                <li on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction'); closeNav()}}" class="link">PUBLIC EDUCATION REQUEST</li>
+                <li on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction'); closeNav()}}" class="link">RECORDING REQUEST</li>
+              </ul>
             </li>
-            <li>TRAININGS</li>
-
-            <li>CONTACT</li>
+            <li class="link">TRAININGS</li>
+            <li on:click|preventDefault={handleMOptions} class="link">ABOUT
+              <span class="mif-minus"></span>
+              <ul class="subMenu">
+                <li  on:click|preventDefault="{()=>{window.app.navigate('/WhoWeAre')}}" class="link">WHO WE ARE</li>
+                <li on:click|preventDefault="{()=>{window.app.navigate('/ContactList')}}" class="link">E-COMMS TEAM</li>
+              </ul>
+            </li>
+            <li class="link">CONTACT</li>
           </ul>
         </div>
     </div>
