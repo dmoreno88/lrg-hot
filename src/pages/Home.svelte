@@ -199,9 +199,6 @@
          
       
     }
-    
-          
-    
 
 </style>
 
@@ -243,6 +240,7 @@
                     <RoundCard  option="3"
                     
                     linkOn={true} 
+                    link={"SignTickets"}
                     p={["Have you called to register for your 9-1-1 address?","Click below to see if your address letter is ready!",]}
                     title="Open Requests" />
                 </div>
