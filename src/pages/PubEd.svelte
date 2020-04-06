@@ -324,7 +324,7 @@
                             {#if lvVideo}
                                     <VideoPlayer on:click="{()=>{lvVideo = false;}}"  src="{lvLink}" />
                             {:else}
-                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/lv_banner.jpg" alt="Lv banner" />
+                                    <img on:click="{()=>{lvVideo = !lvVideo}}" loading="lazy" class="imgResponsive" src="/build/assets/pages/pubed/911TIPS_COVER.png" alt="Lv banner" />
                             {/if}
 
                         </div>         
