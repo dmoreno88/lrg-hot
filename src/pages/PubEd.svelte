@@ -187,9 +187,20 @@
             display: flex;
             flex-direction: column-reverse;
         }
+
+        #innerComms2{
+            flex-wrap:  wrap;
+        }
+
+        .imgResponsive{
+            width: 100%;
+            height: auto;
+        }
        
       
      }
+
+
    
 </style>
 <Header   />   
