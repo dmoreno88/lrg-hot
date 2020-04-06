@@ -114,6 +114,18 @@
         background: rgba(45, 45, 97, 0.5);
         cursor: pointer;
     }
+
+    @media screen and (max-width: 500px) {
+
+        #window{
+            width: 90%;
+            left: 0;
+            margin-left:0;
+            margin-top:0;
+            
+        }
+
+    }
 </style>
 <div id="window">
     <div class="hover-close">
