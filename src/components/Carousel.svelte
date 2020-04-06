@@ -56,6 +56,14 @@
     padding: 4px;
 }
 
+
+@media only screen and (max-width: 480px) {
+  img{
+    height: 220px;
+  }
+
+}
+
 </style>
 <div bind:this={controll}  class="swiper-container">
     <div class="swiper-wrapper">

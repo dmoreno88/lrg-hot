@@ -147,12 +147,7 @@
         width: 100%;
         height: auto;
       }
-      .center-image{
-          display: flex;
-          text-align: center;
-          align-content: center;
-          justify-content: center;
-      }
+   
       .grid-container-3 {
           display: initial;
       
@@ -171,6 +166,7 @@
         }
         button{
              margin-top: 0;
+             margin-left: 0;
         }
     }
      @media only screen and (max-width: 1290px) {

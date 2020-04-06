@@ -18,7 +18,7 @@
 
 .wrapper{
   
-  height: 60px;
+  height: auto;
   background-color: #fff;
   border-bottom: 11px solid #ddd;
   border-top: 11px solid #D9B13B;
@@ -39,12 +39,20 @@
 }
 .btnnav button{
   background: transparent;
-  width: 40px;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
   
 }
+
+.mif-menu{
+  font-weight: 800;
+}
+
 img{
   max-width: 100%;
-  width: 121px;
+  width: 110px;
+  margin-top:8px;
   z-index: 99999;
   
 }
@@ -53,6 +61,10 @@ img{
   position: absolute;
   left: 34px;
   z-index: 4;
+}
+.logo-title{
+  display: none;
+  text-align: center;
 }
 
 .navbar a {
@@ -158,14 +170,14 @@ img{
 .td-mobile-content ul{
   list-style: none;
   margin:0;
-  font-size: 21px;
+  font-size: 28px;
    padding:0;
 }
 
 .td-mobile-content li {
    float: none;
   margin-left: 0;
-  padding: 12px 30px 12px 12px;
+  padding: 14px 2px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -178,9 +190,19 @@ img{
   cursor: pointer;
 }
 
+li span {
+  float: right;
+}
+
 @media only screen and (max-width: 1200px) {
   .logo{
     position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo-title{
+    display: block;
+    font-size: 1.5em;
   }
   .wrapper {
     display: grid;
@@ -206,7 +228,6 @@ img{
 
     .btnnav{
       display: flex;
-      height: 64px;
       text-align: center;
       justify-content: center;
       align-items: center;
@@ -220,6 +241,27 @@ img{
        border: 1px solid rgba(20, 57, 117, 1);
     }
 }
+@media only screen and (max-width: 480px) {
+  .logo-title{
+    font-size: 14px;
+  }
+  .logo{
+    left: 0;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .logo-title{
+    font-size: 12px;
+  }
+
+}
+@media only screen and (max-width: 350px) {
+  .logo-title{
+    font-size: 9px;
+  }
+
+}
 
 </style>
 
@@ -227,7 +269,10 @@ img{
 
 <div class="wrapper">
     <div class="logo">
-        <img alt="logo"  src="/build/assets/logo/public_safety_logo.webp" />
+        <img on:click|preventDefault="{()=>{window.app.navigate('/')}}" alt="logo"  src="/build/assets/logo/public_safety_logo.webp" />
+        <div class="logo-title">
+          <h1>Emergency Communications</h1>
+        </div>
     </div>
     
     <div on:click={onShowMenu} class="btnnav">
@@ -275,9 +320,12 @@ img{
         
         <div class="td-mobile-content">
           <ul>
-            <li>HOME</li>
-            <li>PUBLIC EDUCATION</li>
-            <li>SERVICES</li>
+            <li on:click|preventDefault="{()=>{window.app.navigate('/')}}" >HOME</li>
+            <li on:click|preventDefault="{()=>{window.app.navigate('/PubEd')}}">PUBLIC EDUCATION</li>
+            <li>
+              SERVICES
+              <span class="mif-plus"></span>
+            </li>
             <li>TRAININGS</li>
 
             <li>CONTACT</li>
