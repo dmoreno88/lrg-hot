@@ -147,6 +147,10 @@
         width: 100%;
         height: auto;
       }
+
+      .center-image{
+          text-align: center;
+      }
    
       .grid-container-3 {
           display: initial;
@@ -199,6 +203,14 @@
        
       
      }
+
+      @media only screen and (max-width: 600px) {
+            .asset-video{
+                width: auto;
+                height: auto;
+            }
+
+      }
 
 
    

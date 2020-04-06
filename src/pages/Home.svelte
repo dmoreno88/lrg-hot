@@ -165,23 +165,23 @@
           flex-direction: column;
           align-items: center;
           max-height: 100%;
-          height: 100vh;
+          height: auto;
       }
 
        #innerComms{
            display:flex;
            align-items: center;
            max-height: 100%;
-           height: 100vh;
+           height: auto;
            flex-direction: column;
            margin-top: 0;
        }
 
         #innerComms2{
             flex-direction: column;
-             align-items: center;
+           align-items: center;
            max-height: 100%;
-           height: 100vh;
+           height: auto;
            flex-direction: column;
            margin-top: 0;
 
