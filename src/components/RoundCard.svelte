@@ -13,6 +13,7 @@
     export let p = [];
     export let option = -1;
     export let linkOn = false;
+    export let link = "";
     let statusNumber = 0;
     let interval;
      let overAllYears = "https://gis.lrgvdc911.org/php/spartan/api/v2/index.php/addressticket/overAllYears/";
@@ -132,7 +133,7 @@
         </div>
         {#if linkOn}
             <div >
-                <button on:click="{()=>{window.app.navigate('/OpenTickets')}}">
+                <button on:click="{()=>{window.app.navigate(`/${link}`)}}">
                     Link
                 </button>
             </div>
