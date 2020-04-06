@@ -24,16 +24,7 @@
         height: 600px;
     }
 
-    .grid-management{
-        display: flex;
-        height: 540px;
-        flex-direction: row;
-        justify-content: space-between;
-        padding-left: 2%;
-        padding-right: 2%;
-    }
-
-    .pics-manage{
+       .pics-manage{
         height: auto !important;
         padding-top: 5%;
         padding-bottom: 0%;
@@ -43,6 +34,7 @@
         flex-direction:row;
         justify-content: space-evenly;
         align-items:center;
+        flex-wrap: wrap;
         padding-left: 5%;
         padding-right: 5%;
         padding-bottom: 3%;
@@ -51,16 +43,6 @@
 
 
      @media screen and (max-width: 1024px) {
-       .grid-management{
-            display: grid;
-           
-            margin-bottom: 130px;
-            align-items: center;
-            justify-content: space-evenly;
-            max-height: 100%;
-            height: 100vh;
-      }
-
 
        .grid-staff{
                display: grid;
