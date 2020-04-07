@@ -2,6 +2,7 @@
 
   console.log(window.app);
   let mobileNav;
+  let format = "webp";
 
   function onShowMenu() {
    // document.getElementById("mySidenav").style.width = "250px";
@@ -31,6 +32,13 @@
           }
         }
      }
+
+  }
+
+  function onLoadError()
+  {
+
+    format = "png";
   }
 </script>
 
@@ -300,7 +308,9 @@ li span {
 
 <div class="wrapper">
     <div class="logo">
-        <img on:click|preventDefault="{()=>{window.app.navigate('/')}}" alt="logo"  src="/build/assets/logo/public_safety_logo.webp" />
+        <img on:error={onLoadError}
+         on:click|preventDefault="{()=>{window.app.navigate('/')}}" 
+         alt="logo"  src="/build/assets/logo/public_safety_logo.{format}" />
         <div class="logo-title">
           <h1>Emergency Communications</h1>
         </div>
