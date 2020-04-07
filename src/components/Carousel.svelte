@@ -4,6 +4,7 @@
      import Swiper from "swiper";
 
      let controll;
+     let format = "webp";
      onMount(() => {
          var swiper = new Swiper(controll, {
             slidesPerView: 1,
@@ -26,7 +27,7 @@
       //If the Browswer doesn't support webp..
       //I handle the error on failover to png...
       function onLoadError() {
-          this.src = this.dataset.failover;
+         format = "png";
       }
 
 
@@ -78,41 +79,39 @@
                 
             
         <img on:error={onLoadError} on:click="{()=>{window.app.navigate('/EventRequest')}}" loading="lazy"  class="clickable" alt="PUB"
-        data-failover="./build/assets/carousel/event_banner.png"
-        src="./build/assets/carousel/event_banner.webp" />
+       
+        src="./build/assets/carousel/event_banner.{format}" />
                
       </div>
 
       <div class="swiper-slide">
          <img loading="lazy" class="clickable" alt="LV" 
-         data-failover="./build/assets/carousel/location_validation.png"
-         src="./build/assets/carousel/location_validation.webp" />
+         
+         src="./build/assets/carousel/location_validation.{format}" />
       </div>
 
        <div class="swiper-slide">
                 <img loading="lazy" alt="Training"
-        data-failover="./build/assets/carousel/training_banner.png"
-        src="./build/assets/carousel/training_banner.webp"
+        
+        src="./build/assets/carousel/training_banner.{format}"
          />
       </div>
 
       <div class="swiper-slide">
                 <img loading="lazy" alt="Training"
-        data-failover="./build/assets/carousel/911tips_banner.png"
-        src="./build/assets/carousel/911tips_banner.webp"
+        
+        src="./build/assets/carousel/911tips_banner.{format}"
          />
       </div>
 
       <div class="swiper-slide">
         <img loading="lazy" alt="Karis"
-        data-failover="./build/assets/carousel/karislaw_banner.png"
-        src="./build/assets/carousel/karislaw_banner.webp" />
+        src="./build/assets/carousel/karislaw_banner.{format}" />
       </div>
 
       <div class="swiper-slide">
           <img loading="lazy" alt="PUB"
-        data-failover="./build/assets/carousel/pubed_banner.png"
-        src="./build/assets/carousel/pubed_banner.webp" />
+          src="./build/assets/carousel/pubed_banner.{format}" />
       </div>
      
     </div>
