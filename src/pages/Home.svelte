@@ -1,7 +1,7 @@
 <script>
     import {onMount} from "svelte";
     import Carousel from "../components/Carousel.svelte";
-    import RoundCard from "../components/RoundCard.svelte";
+    import RoundCard from "../components/Cards/RoundCard.svelte";
     import Header from "../components/Header.svelte";
 	import Footer from "../components/Footer.svelte";
     import Wrapper from "../components/Wrapper.svelte";

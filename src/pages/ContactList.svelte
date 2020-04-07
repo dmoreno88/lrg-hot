@@ -2,7 +2,7 @@
     import Header from "../components/Header.svelte";
     import Footer from "../components/Footer.svelte";
     import Wrapper from "../components/Wrapper.svelte";
-    import PhotoCard from "../components/PhotoCard.svelte";
+    import PhotoCard from "../components/Cards/PhotoCard.svelte";
 </script>
 <style>
     h2{
@@ -112,7 +112,7 @@
             photo="./build/assets/staff/sarredondo.jpg" title="Customer Service II" />    
 
             <PhotoCard office="(956) 682-3481 Ext. 135" name="Monica Estrada" email="mestrada@lrgvdc911.org"  cardHeight="500" cardWidth="350"
-             photo="./build/assets/staff/MESTRADA.jpg" title="Customer Service II" />
+             photo="./build/assets/staff/mestrada.jpg" title="Customer Service II" />
 
         </div>
 
