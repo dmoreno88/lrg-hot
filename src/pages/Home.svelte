@@ -6,9 +6,11 @@
 	import Footer from "../components/Footer.svelte";
     import Wrapper from "../components/Wrapper.svelte";
     
-
+    let format = "webp";
     onMount(() => {
-       
+           var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+           console.log(iOS)
+           if(iOS) format = "png";
             lazyLoadingJS();
     })
 
@@ -16,28 +18,39 @@
         const scripts = document.getElementsByTagName("script");
         const size = scripts.length;
         let found = false;
+        let foundpdf = false;
 
           for(var i = 0; i < size; i++){
             
             if(scripts[i].src.indexOf("pdf-lib.min.js") > 0){
                 found = true;
-                break;
+                
+            }else if(scripts[i].src.indexOf("pdf.js") > 0){
+                foundpdf = true;
+            }
+
+            if(foundpdf && found){
+                    break
             }
         }
 
         if(!found){
-            console.log("NOT FOUND");
-            console.time("loading")
             const url = "https://unpkg.com/pdf-lib/dist/pdf-lib.min.js";
+           
             var fileref=document.createElement('script')
+           
             fileref.setAttribute("type","text/javascript")
             fileref.setAttribute("src", url);
+            document.body.appendChild(fileref);
+        }
 
-            fileref.onload = (e) => {
-                console.timeEnd("loading");
-            }
+        if(!foundpdf) {
+             const pdf = "https://mozilla.github.io/pdf.js/build/pdf.js";
+            var pdfjs = document.createElement("script");
+            pdfjs.setAttribute("type", "text/javascript")
+            pdfjs.setAttribute("src", pdf);
 
-            document.getElementsByTagName("head")[0].appendChild(fileref);
+            document.body.appendChild(pdfjs);
         }
     }
 
@@ -140,7 +153,7 @@
     hr.type_1 {
         border: 0;
         height: 200px;
-        background-image: url('/build/assets/logo/logo_line.break3.png');
+        
         background-repeat: no-repeat;
         background-size: 900px;
         background-position: center;
@@ -248,7 +261,7 @@
             </div>
     </div>
 
-<hr class="type_1" />
+<hr class="type_1" style="background-image: url('/build/assets/logo/logo_line.break3.{format}');" />
 
 <div id="callVolumeTitle">
     <h2>9-1-1 Call & Text Volume</h2>

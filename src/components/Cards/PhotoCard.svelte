@@ -51,7 +51,7 @@
 
 <div id="card" style="border-raidus:{cardRadius};height: {cardHeight}px; width: {cardWidth}px;">
     <div id="photo"  >
-        <img src="{photo}" loading="lazy" alt="Stock" style="width: 80%; height:{photoHeight};object-fit:cover;">
+        <img src="{photo}" on:error loading="lazy" alt="Stock" style="width: 80%; height:{photoHeight};object-fit:cover;">
         <div id="title">
              <h2>{name}</h2>
              <h2 class="small-line">{title}</h2>

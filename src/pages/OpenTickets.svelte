@@ -16,6 +16,7 @@
     let authorize = false;
     let selected = null;
     let ticket = null;
+    let record = null;
     let fname = "";
     let signature = false;
     let pad = null;
@@ -60,9 +61,10 @@
     }
 
     async function onDownloadTickets(){
+        console.log(url)
         const response = await fetch(url);
         const json = await response.json();
-       
+        console.log(json)
         tickets = json;
         ticketsLoading = false;
        
@@ -106,9 +108,12 @@
        fetch(genLetter, {method: 'POST', body: form}).then((response) =>{
            return response.json()
        }).then((data) => {
+           
            if(data.hasOwnProperty("pdf")){
                pdf = data.pdf;
+               pad.download(pdf);
            }
+
            ticketsLoading = false;
 
        });
@@ -145,6 +150,7 @@
     function onPopUp(tick){
         authorize = true;
         selected = tick;
+        record = selected;
         ticket = selected.objectid;
         console.log(ticket);
         fname = `${tick.cfirst_name} ${tick.clast_name}`;
@@ -240,7 +246,7 @@
             <AuthorizeLetter on:loading={onLoading} on:passed={onSignature} on:invalid={onInvalid} {ticket} on:close="{(e)=>{authorize = e.dislay}}" {fname} />
         {/if}
         {#if signature}
-             <SignaturePad on:loading={onLoading} {fname} {pdf} bind:this={pad} on:ready={onReadyPad} />
+             <SignaturePad on:done="{(e) => {signature = false;}}" on:loading={onLoading} {record} {fname} {pdf} bind:this={pad} on:ready={onReadyPad} />
         {/if}
 
         <div class="input-group">

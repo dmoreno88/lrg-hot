@@ -1,6 +1,4 @@
 <script>
-
-  console.log(window.app);
   let mobileNav;
   let format = "webp";
 
@@ -330,6 +328,7 @@ li span {
 
           <div class="dropdown"><button class="dropbtn">SERVICES </button>
           <div class="dropdown-content">
+              <a href="AddressLetter" on:click|preventDefault="{()=>{window.app.navigate('/SignLetter');}}">ADRESS LETTER</a>
               <a href="AddressRequest">ADDRESS REQUEST</a>
               <a on:click|preventDefault="{()=>{window.app.navigate('/UnderConstruction')}}"  href="UnderConstruction">RECORDING REQUEST</a>
               <a href="EventRequest">PUBLIC EDUCATION REQUEST</a>

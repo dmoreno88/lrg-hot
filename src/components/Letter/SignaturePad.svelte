@@ -1,42 +1,64 @@
 <script>
     import SignaturePad from "signature_pad";
     import {onMount, createEventDispatcher} from "svelte";
-    export let pdf;
+    export let pdf = "";
     export let fname;
-    export let ticket;
+    export let record;
 
     let canvas;
+    let element;
     let signaturePad;
     let main = "https://gis.lrgvdc911.org/LETTER_TEMPLATES/"
+    let apiLetter = "https://gis.lrgvdc911.org/php/spartan/api/v2/index.php/addressticket/grabPDFESign/";
+    let sendLetter = "https://gis.lrgvdc911.org/php/spartan/api/v2/sendEmail.php";
     let language;
     let errorMSG = "";
     let animate = false;
     let consent = false;
+    let href;
 
     const dispatch = createEventDispatcher();
    
 
      let pdfDoc;
-     let url;
+     let pdfjsLIb;
+     let bufferBytes;
+     let render;
+     let context;
+
+     $: url =  `${main}${pdf}`;
    
     onMount(() => {
         console.log("SIGNATURE PAD");
-      
+        render = document.createElement("CANVAS");
+        context = render.getContext('2d');
 
+        pdfjsLIb = window['pdfjs-dist/build/pdf'];
+        pdfjsLIb.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+        
+        element.scrollIntoView()
+
+        //Setup Canvas...
         signaturePad = new SignaturePad(canvas, {
             // It's Necessary to use an opaque color when saving image as JPEG;
             // this option can be omitted if only saving as PNG or SVG
            // backgroundColor: 'rgb(255, 255, 255)'
          });
 
-
+          //ON RESIZE
             window.onresize = resizeCanvas;
             resizeCanvas();
             dispatch("ready");
            
     })
 
-   
+   export function download(pdf){
+      //DOWNLOAD THE CANVAS..
+       fetch(`${main}${pdf}`).then(res => {return res.arrayBuffer();}).then((buffer) => {
+           bufferBytes = buffer;
+           console.log(bufferBytes);
+       })
+   }
 
     function onClear(){
         signaturePad.clear();
@@ -58,7 +80,9 @@
         response.msg = "Please check the consent box!";
         return response;
       }
-      if(!language){
+      console.log(language);
+
+      if(language == null){
         response.error  = true;
         response.msg = "Please select a language!";
         return response;
@@ -68,18 +92,24 @@
     }
 
     async function onGenerate(){
+        let option = this.dataset['index'];
+        console.log(option);
         errorMSG = "";
         
         let Response = checkInputs();
        
         if(!Response.error) {
+           canvas.classList.toggle("hide")
            dispatch("loading", true);
-            
-      
-              url = `${main}${pdf}`;
-             
-             const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
-            pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes)
+            var form = new FormData();
+            console.log(pdf);
+            var jpg = pdf.replace(".pdf", ".jpg");
+            form.append("pdfName", pdf);
+            form.append("jpgName", jpg);
+            form.append("id", record['id_ticket']);
+     
+        
+            pdfDoc = await PDFLib.PDFDocument.load(bufferBytes)
 
              const image = signaturePad.toDataURL().split(",");
 
@@ -94,7 +124,7 @@
              
                  page.drawImage(pngImage, {
                   x: (page.getWidth() / 2),
-                  y: 190,
+                  y: 180,
                   width: pngDims.width,
                   height: pngDims.height,
                 })
@@ -109,12 +139,66 @@
               
              
               pdfDoc.removePage(language);
-          
+             
+              
+              var blob = await pdfDoc.saveAsBase64()
+              
+              var pdfData = atob(blob);
+              var loadingTask = pdfjsLib.getDocument({data: pdfData});
+              form.append("pdf64", blob);
 
-             const pdfBytes = await pdfDoc.save()
-            
-             download(pdfBytes, pdf, "application/pdf");
-             dispatch("loading", false);
+
+                loadingTask.promise.then(function(pdF) {
+                console.log('PDF loaded');
+                
+                pdF.getPage(1).then(function(pge) {
+                    console.log('Page loaded');
+                    
+                    var scale = 1.5;
+                    var viewport = pge.getViewport({scale: scale});
+
+                    // Prepare canvas using PDF page dimensions
+                 
+                    render.height = viewport.height;
+                    render.width = viewport.width;
+
+                  // Render PDF page into canvas context
+                    var renderContext = {
+                      canvasContext: context,
+                      viewport: viewport
+                    };
+                    var renderTask = pge.render(renderContext);
+                    renderTask.promise.then(async function () {
+                     var jpgToPDF = render.toDataURL('image/jpeg')
+                     form.append("jpg64", jpgToPDF)
+                       fetch(apiLetter, {method: 'post', body: form}).then((response) => {
+                          processOptions(option, pdfDoc)
+                          
+                          dispatch("loading", false);
+                          dispatch("done");
+                       });
+
+
+                        
+
+
+
+                    });
+                });
+              }, function (reason) {
+                // PDF loading error
+                console.error(reason);
+              });
+
+
+
+
+           
+
+           
+             
+
+             
         }else{
           animate = true;
           errorMSG = Response.msg;
@@ -122,6 +206,29 @@
         }
        
     }
+
+   async function processOptions(option, pdfDoc){
+      
+       if(option == 1){
+            var email = prompt("Please enter your email?");
+            var data = new FormData();
+            data.append("pdfName", pdf);
+            data.append("email", email);
+            fetch(sendLetter, {method: 'post', body: data});
+            }else if(option == 2){
+                        
+                href = await pdfDoc.saveAsBase64({ dataUri: true })
+              
+                var iframe = "<iframe width='100%' height='100%' src='" + href + "'></iframe>"
+                var win = window.open();
+                win.document.open();
+                win.document.write(iframe);
+                win.document.close();
+                window.focus()
+              }
+    }
+
+ 
 
     export function resizeCanvas() {
         // When zoomed out to less than 100%, for some very strange reason,
@@ -167,6 +274,10 @@
     padding: 16px;
 }
 
+.hide{
+   display: none;
+}
+
 .signature-pad::before,
 .signature-pad::after {
   position: absolute;
@@ -191,11 +302,13 @@
           transform: skew(3deg) rotate(3deg);
 }
 
+
 .signature-pad--body {
   position: relative;
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 200px;
   border: 1px solid #f4f4f4;
 }
 
@@ -253,9 +366,19 @@ p{
   color: black;
 }
 
+ @media screen and (max-width: 500px) {
+    .signature-pad {
+       width: auto;
+       left:0;
+       margin-left:0;
+    }
+
+ }
+
 
 </style>
-<div id="signature-pad" class="signature-pad">
+<div bind:this={element} id="signature-pad" class="signature-pad">
+  
     <div class="signature-pad--body">
       <canvas  bind:this={canvas}>
       </canvas>
@@ -271,8 +394,11 @@ p{
         </div>
         <div>
           <p><input bind:value={consent} type="checkbox" /> I consent to use Electronic Records and Signatures </p>
-          <button on:click={onGenerate} type="button" class="button save" >Download Letter</button>
-          <button on:click={onGenerate} type="button" class="button save" >E-mail Letter</button>
+         
+          <button on:click={onGenerate} data-index="1" type="button" class="button save" >E-mail Letter</button>
+          <button on:click={onGenerate} data-index="2" type="button" class="button save">
+            Print Letter
+          </button>
         </div>
         
       </div>
