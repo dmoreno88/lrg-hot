@@ -36,7 +36,7 @@ app.path('/ContactList', async ctx=>{
     ctx.mount(Chunk(()=> import("./pages/ContactList.svelte")));
 });
 
-app.path('/PubEd', async ctx => {
+app.path('/PublicEducation', async ctx => {
     ctx.mount(Chunk(()=> import('./pages/PubEd.svelte')));
 })
 
@@ -46,7 +46,7 @@ app.path('/EventRequest', async ctx => {
 
 
 
-app.path('/OpenTickets', async ctx => {
+app.path('/SignLetter', async ctx => {
     ctx.mount(Chunk(() => import('./pages/OpenTickets.svelte')));
 });
 
