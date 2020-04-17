@@ -16,6 +16,7 @@
     let animate = false;
     let consent = false;
     let href;
+    let isMobile = false;
 
     const dispatch = createEventDispatcher();
    
@@ -30,6 +31,10 @@
    
     onMount(() => {
         console.log("SIGNATURE PAD");
+        var mwidth = document.body.clientWidth;
+        isMobile = window.isMobile;
+      
+       
         render = document.createElement("CANVAS");
         context = render.getContext('2d');
 
@@ -49,6 +54,8 @@
             window.onresize = resizeCanvas;
             resizeCanvas();
             dispatch("ready");
+
+            download(pdf);
            
     })
 
@@ -56,7 +63,7 @@
       //DOWNLOAD THE CANVAS..
        fetch(`${main}${pdf}`).then(res => {return res.arrayBuffer();}).then((buffer) => {
            bufferBytes = buffer;
-           console.log(bufferBytes);
+           
        })
    }
 
@@ -66,9 +73,7 @@
 
     function checkInputs() {
        let response = {"error" : false, "msg" : ""};
-     
-
-
+    
 
       if(signaturePad.isEmpty()) {
          response.error = true;
@@ -85,6 +90,12 @@
       if(language == null){
         response.error  = true;
         response.msg = "Please select a language!";
+        return response;
+      }
+
+      if(pdf == null){
+        response.error = true;
+        response.msg = "Please refresh the page!";
         return response;
       }
 
@@ -178,26 +189,12 @@
                           dispatch("done");
                        });
 
-
-                        
-
-
-
                     });
                 });
               }, function (reason) {
                 // PDF loading error
                 console.error(reason);
               });
-
-
-
-
-           
-
-           
-             
-
              
         }else{
           animate = true;
@@ -214,7 +211,9 @@
             var data = new FormData();
             data.append("pdfName", pdf);
             data.append("email", email);
-            fetch(sendLetter, {method: 'post', body: data});
+            fetch(sendLetter, {method: 'post', body: data}).then((e)=>{
+               alert("E-mail has been sent please check mailbox.")
+            });
             }else if(option == 2){
                         
                 href = await pdfDoc.saveAsBase64({ dataUri: true })
@@ -240,15 +239,10 @@
         canvas.width = canvas.offsetWidth * ratio;
         canvas.height = canvas.offsetHeight * ratio;
         canvas.getContext("2d").scale(ratio, ratio);
-
-        // This library does not listen for canvas changes, so after the canvas is automatically
-        // cleared by the browser, SignaturePad#isEmpty might still return false, even though the
-        // canvas looks empty, because the internal data of this library wasn't cleared. To make sure
-        // that the state of this library is consistent with visual state of the canvas, you
-        // have to clear it manually.
-        signaturePad.clear();
+        
     }
 
+  
 </script>
 <style>
     .signature-pad {
@@ -273,6 +267,7 @@
     border-radius: 4px;
     padding: 16px;
 }
+
 
 .hide{
    display: none;
@@ -322,7 +317,7 @@ canvas {
 }
 
 .signature-pad--footer {
-  color: #C3C3C3;
+  
   text-align: center;
   font-size: 1.2em;
   margin-top: 8px;
@@ -365,6 +360,9 @@ input[type="radio"] {
 p{
   color: black;
 }
+.liAlign{
+  text-align: start;
+}
 
  @media screen and (max-width: 500px) {
     .signature-pad {
@@ -372,12 +370,12 @@ p{
        left:0;
        margin-left:0;
     }
-
+    
  }
 
 
 </style>
-<div bind:this={element} id="signature-pad" class="signature-pad">
+  <div  bind:this={element} id="signature-pad" class="signature-pad rotate-mobile">
   
     <div class="signature-pad--body">
       <canvas  bind:this={canvas}>
@@ -389,19 +387,29 @@ p{
       <div class="signature-pad--actions">
         <div>
           <button on:click={onClear} type="button" class="button clear" data-action="clear">Clear</button>
-          <p><input bind:group={language} value={1} name="language" type="radio" /> English Letter</p>
-          <p><input bind:group={language} value={0} name="language" type="radio" /> Spanish Letter</p>
-        </div>
-        <div>
-          <p><input bind:value={consent} type="checkbox" /> I consent to use Electronic Records and Signatures </p>
-         
-          <button on:click={onGenerate} data-index="1" type="button" class="button save" >E-mail Letter</button>
+           <button on:click={onGenerate} data-index="1" type="button" class="button save" >E-mail Letter</button>
           <button on:click={onGenerate} data-index="2" type="button" class="button save">
             Print Letter
           </button>
+        </div>
+        <div>
+          <ul style="list-style: none;">
+            <li>
+                <input bind:value={consent} type="checkbox" /> I consent to use Electronic Records and Signatures 
+            </li>
+            <li class="liAlign"> 
+              <input bind:group={language} value={1} name="language" type="radio" /> English Letter </li>
+            <li class="liAlign">
+              <input bind:group={language} value={0} name="language" type="radio" /> Spanish Letter
+            </li>       
+           </ul>
+
+
+         
         </div>
         
       </div>
       <p class:error={animate} class="err">{errorMSG}</p>
     </div>
   </div>
+

@@ -21,6 +21,8 @@
     let signature = false;
     let pad = null;
     let pdf = null;
+    let mobile = false;
+
 
     
     let listPorts = [8080, 5000, 8080, 8080];
@@ -28,6 +30,7 @@
 
     onMount(() => {
         ticketsLoading = true;
+         mobile = window.isMobile;
         //Lazy LOADING CSS IMPORTANT FOR TABLE..
         lazyLoadingCSS();
     });
@@ -61,10 +64,10 @@
     }
 
     async function onDownloadTickets(){
-        console.log(url)
+  
         const response = await fetch(url);
         const json = await response.json();
-        console.log(json)
+     
         tickets = json;
         ticketsLoading = false;
        
@@ -91,9 +94,9 @@
       
         let server = window.listServers[index];
         let port   = listPorts[index];
-        console.log(`${server} : ${port}`);
+        // console.log(`${server} : ${port}`);
 
-        console.log(index);
+       
         let form = new FormData();
         form.append("srv", server);
         form.append("port", port);
@@ -110,8 +113,12 @@
        }).then((data) => {
            
            if(data.hasOwnProperty("pdf")){
+                signature = true;
                pdf = data.pdf;
-               pad.download(pdf);
+               if(pad){
+                   pad.download(pdf);
+               }
+               
            }
 
            ticketsLoading = false;
@@ -145,6 +152,7 @@
 
     function onSearch() {
          tickets = tickets.filter((e) => e.objectid.includes(searchTicket));
+         ticketsLoading = false;
     }
 
     function onPopUp(tick){
@@ -152,7 +160,6 @@
         selected = tick;
         record = selected;
         ticket = selected.objectid;
-        console.log(ticket);
         fname = `${tick.cfirst_name} ${tick.clast_name}`;
 
     }
@@ -162,8 +169,7 @@
     }
 
     function onSignature(){
-        
-        signature = true;
+        ticketsLoading = true;
         authorize = false;
         onGenerateLetter()
     }
@@ -250,7 +256,12 @@
         {/if}
 
         <div class="input-group">
-             <input type="text" on:keydown={onEnter} bind:value={searchTicket} placeholder="Search By Ticket Number" />
+           {#if mobile}
+                <input type="number" on:keydown={onEnter} bind:value={searchTicket} placeholder="Search By Ticket Number" />
+           {:else}
+                <input type="text" on:keydown={onEnter} bind:value={searchTicket} placeholder="Search By Ticket Number" />
+           {/if}
+            
              <button on:click={onSearch}>Search</button>
              <button on:click={onDownloadTickets}>Refresh</button>
         </div>

@@ -1,13 +1,17 @@
 <script>
-    import { createEventDispatcher} from "svelte";
+    import { onMount, createEventDispatcher} from "svelte";
     const dispatch = createEventDispatcher();
     export let fname;
     export let ticket = 0;
     let value;
     let tries = 4;
     let error = false;
+    let mobile = false;
 
   
+    onMount(async () =>{
+        mobile = window.isMobile;
+    })
 
     function fixName(name){
        let lower = name.toLowerCase();
@@ -137,7 +141,11 @@
         To protect your private information we implemented this security measure.
     </p>
     <div class="flex-box">
-        <input  on:keydown={onKeyDown} bind:value={value} type="text" placeholder="Enter Ticket Number" />
+        {#if mobile}
+             <input  on:keydown={onKeyDown} bind:value={value} type="number" placeholder="Enter Ticket Number" />
+        {:else}
+            <input  on:keydown={onKeyDown} bind:value={value} type="text" placeholder="Enter Ticket Number" />
+        {/if}
         <button on:click={onEnter} class="enter">Verify</button>
     </div>
     {#if error}
