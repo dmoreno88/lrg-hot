@@ -1,7 +1,5 @@
 <script>
 	import {onMount} from "svelte";
-	
-	// import Home from "./pages/Home.svelte";
 	import svelte from 'crayon-svelte';
 	import crayon from 'crayon';
 
