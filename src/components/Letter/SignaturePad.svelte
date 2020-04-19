@@ -39,7 +39,7 @@
         context = render.getContext('2d');
 
         pdfjsLIb = window['pdfjs-dist/build/pdf'];
-        pdfjsLIb.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+        pdfjsLIb.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js'//'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
         
         element.scrollIntoView()
 

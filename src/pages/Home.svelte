@@ -25,12 +25,7 @@
             if(scripts[i].src.indexOf("pdf-lib.min.js") > 0){
                 found = true;
                 
-            }else if(scripts[i].src.indexOf("pdf.js") > 0){
-                foundpdf = true;
-            }
-
-            if(foundpdf && found){
-                    break
+                break;
             }
         }
 
@@ -44,14 +39,14 @@
             document.body.appendChild(fileref);
         }
 
-        if(!foundpdf) {
-             const pdf = "https://mozilla.github.io/pdf.js/build/pdf.js";
-            var pdfjs = document.createElement("script");
-            pdfjs.setAttribute("type", "text/javascript")
-            pdfjs.setAttribute("src", pdf);
+        // if(!foundpdf) {
+        //      const pdf = "https://mozilla.github.io/pdf.js/build/pdf.js";
+        //     var pdfjs = document.createElement("script");
+        //     pdfjs.setAttribute("type", "text/javascript")
+        //     pdfjs.setAttribute("src", pdf);
 
-            document.body.appendChild(pdfjs);
-        }
+        //     document.body.appendChild(pdfjs);
+        // }
     }
 
 </script>
@@ -207,10 +202,7 @@
 
         .ecoms2{
             height: auto;
-        }
-
-         
-      
+        }  
     }
 
 </style>
