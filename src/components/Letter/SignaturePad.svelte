@@ -135,14 +135,14 @@
              
                  page.drawImage(pngImage, {
                   x: (page.getWidth() / 2),
-                  y: 180,
+                  y: 150,
                   width: pngDims.width,
                   height: pngDims.height,
                 })
 
               
                 page.drawText(fname,  {x: (page.getWidth() / 2),
-                 y: 150,
+                 y: 110,
                   size: 20,
                   lineHeight: 24,
                 })
