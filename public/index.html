@@ -6,13 +6,13 @@
 
 	<title>E-Comms/9-1-1</title>
 	<link rel="preload" as="script" href="build/main-79635a13.js">
-	<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.min.js"
+	<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.min.js">
+	<link rel="preload" as="style" href="build/bundle.css">
+	<link rel="preload" as="style" href="https://cdn.metroui.org.ua/v4/css/metro-icons.min.css">
 	<link rel='icon' type='image/png' href='/favicon.png'>
-	<link async href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet"> 
-	
-	<link async rel='stylesheet' href='build/bundle.css'>
+	<link as="style" href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="preload"> 
 
-	<link async rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-icons.min.css">
+	
 	
 	<script>
 		window.ENTER = 13;
@@ -99,12 +99,38 @@ button:focus {
 			background-color: #f5f5f5;
 		}
 	</style>
+	<script>
+		function onLoadIcons(){
+			const links = document.getElementsByTagName("LINK");
+        	const size = links.length;
+			let found = false;
+
+			for(var i = 0; i < size; i++){
+				
+				if(links[i].href.indexOf("metro-icons.min.css") > 0 
+				&& links[i].rel == "stylesheet"){
+					found = true;
+					break;
+				}
+			}
+
+			if(!found && document.body.clientWidth < 1200){
+				var link = document.createElement("LINK");
+				link.href = "https://cdn.metroui.org.ua/v4/css/metro-icons.min.css";
+				link.rel = "stylesheet";
+				var head = document.getElementsByTagName('head')[0];
+				head.appendChild(link);
+			}
+		}
+	</script>
 </head>
 
 <body>
 	<div id="app"></div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.min.js" async defer></script>
+	<link rel='stylesheet' href='build/bundle.css'>
+	<link async href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet"> 
+	<script onload="onLoadIcons()" type="module" defer src='build/main-79635a13.js'></script>
 	
-	<script type="module" defer src='build/main-79635a13.js'></script>
 </body>
 </html>
