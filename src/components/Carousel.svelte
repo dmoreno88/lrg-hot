@@ -75,10 +75,19 @@
 <div bind:this={controll}  class="swiper-container">
     <div class="swiper-wrapper">
 
+       <div class="swiper-slide">
+                
+        <a href="https://my2020census.gov/login" target="_blank">
+          <img on:error={onLoadError} 
+          loading="lazy"  class="clickable" alt="CENSUS"
+          src="./build/assets/carousel/census_banner.{format}" />
+        </a>    
+      </div>
+
      <div class="swiper-slide">
                 
             
-        <img on:error={onLoadError} on:click="{()=>{window.app.navigate('/EventRequest')}}" loading="lazy"  class="clickable" alt="PUB"
+        <img  on:click="{()=>{window.app.navigate('/EventRequest')}}" loading="lazy"  class="clickable" alt="PUB"
        
         src="./build/assets/carousel/event_banner.{format}" />
                

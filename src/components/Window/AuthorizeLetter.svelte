@@ -135,7 +135,7 @@
     <div class="hover-close">
         <button on:click={onClose} class="close">X</button>
     </div>
-    <h2>Authorize User</h2>
+    <h2>Authorized User</h2>
     <p>
         {fixName(fname)} please enter ticket number to verify this ticket is associated to you.
         To protect your private information we implemented this security measure.
