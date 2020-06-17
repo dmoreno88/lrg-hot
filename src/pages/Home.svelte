@@ -11,43 +11,8 @@
            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
            console.log(iOS)
            if(iOS) format = "png";
-            lazyLoadingJS();
+           // lazyLoadingJS();
     })
-
-    async function lazyLoadingJS() {
-        const scripts = document.getElementsByTagName("script");
-        const size = scripts.length;
-        let found = false;
-        let foundpdf = false;
-
-          for(var i = 0; i < size; i++){
-            
-            if(scripts[i].src.indexOf("pdf-lib.min.js") > 0){
-                found = true;
-                
-                break;
-            }
-        }
-
-        if(!found){
-            const url = "https://unpkg.com/pdf-lib/dist/pdf-lib.min.js";
-           
-            var fileref=document.createElement('script')
-           
-            fileref.setAttribute("type","text/javascript")
-            fileref.setAttribute("src", url);
-            document.body.appendChild(fileref);
-        }
-
-        // if(!foundpdf) {
-        //      const pdf = "https://mozilla.github.io/pdf.js/build/pdf.js";
-        //     var pdfjs = document.createElement("script");
-        //     pdfjs.setAttribute("type", "text/javascript")
-        //     pdfjs.setAttribute("src", pdf);
-
-        //     document.body.appendChild(pdfjs);
-        // }
-    }
 
 </script>
 <style>
