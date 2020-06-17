@@ -1,5 +1,6 @@
 import svelte from 'rollup-plugin-svelte-hot'
 import resolve from '@rollup/plugin-node-resolve'
+import json from '@rollup/plugin-json';
 import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
@@ -33,12 +34,13 @@ export default {
     sourcemap: true,
     format: 'es',//'iife',
     name: 'app',
-    file: 'public/build/bundle.js',
+    //file: 'public/build/bundle.js',
     dir: 'public/build'
   },
   experimentalCodeSplitting: true,
 	experimentalDynamicImport: true,
   plugins: [
+   
     svelte({
       // Enable run-time checks when not in production
       dev: !production,
@@ -74,6 +76,7 @@ export default {
       // rollup-plugin-svelte-hot automatically resolves & dedup svelte
     }),
     commonjs(),
+    json(),
 
     // In dev mode, call `npm run start:dev` once
     // the bundle has been generated
