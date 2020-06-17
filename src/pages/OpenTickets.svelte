@@ -1,5 +1,6 @@
 <script>
     import {onMount} from "svelte";
+     import {count} from "../components/store/stores.js";
     import RoundCard from "../components/Cards/RoundCard.svelte";
     import Header from "../components/Header.svelte";
 	import Footer from "../components/Footer.svelte";
@@ -22,6 +23,7 @@
     let pad = null;
     let pdf = null;
     let mobile = false;
+    let disProgress = false;
 
 
     
@@ -64,13 +66,12 @@
     }
 
     async function onDownloadTickets(){
-  
+        
         const response = await fetch(url);
         const json = await response.json();
-     
-        tickets = json;
         ticketsLoading = false;
-       
+        tickets = json;
+    
     }
 
     function getRandomInt(max) {
@@ -88,7 +89,8 @@
         }
         
     }
-
+    
+     //Old GENERATION OF LETTER
      async function onGenerateLetter() {
         let index = getRandomInt(4); 
       
@@ -121,9 +123,108 @@
                
            }
 
-           ticketsLoading = false;
+           ticketsLoading = true;
 
        });
+    }
+
+    function generateTest(){
+        //1910082567
+
+        let timer = null;
+        count.update(n => n = 0);
+        // Select Random number from 0, 3;
+        let index = getRandomInt(4); 
+      
+        // Select Server and Port...
+        let server = window.listServers[index];
+        let port   = listPorts[index];
+      
+
+        //Create the FormData to send to the API..
+        let form = new FormData();
+        form.append("srv", server);
+        form.append("port", port);
+
+        form.append("name", fname);
+        form.append("ticket", selected.objectid);
+        form.append("pr_name", '');
+        form.append("propid", ifPropertyId());
+        form.append("addr1", selected.full_address);
+        form.append("addr2", selected.msag_comm);
+
+           // 1. Create a new XMLHttpRequest object
+          let xhr = new XMLHttpRequest();
+            xhr.responseType = 'json'; 
+          // 2. Configure it: GET-request for the URL /article/.../load
+          xhr.open('POST', genLetter);
+
+          
+          // 4. This will be called after the response is received
+          xhr.onload = function() {
+            if (xhr.status != 200) { // analyze HTTP status of the response
+            
+              alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+               
+            } else { // show the result
+              
+              if(timer) {
+                clearInterval(timer);
+                count.update(n => n = 100);
+              }
+              let data = xhr.response;
+           
+                if(data.hasOwnProperty("pdf")){
+                   
+                     pdf = data.pdf;
+                    if(pad){
+                        pad.download(pdf);
+                    }
+                     //Delay the transition..
+                     setTimeout(() => {
+                         count.update(n => n = 0); //Reset percentage..
+                        signature = true;
+                        ticketsLoading = false;   
+                    }, 500)
+                    
+                }else{
+                    alert("Please try again.");
+                }
+                          
+              
+            }
+
+           
+          };
+
+              xhr.upload.onprogress = function(event) {
+                   
+                    if (event.lengthComputable) {
+                        let loaded = event.loaded;
+                        let total  = event.total;
+                        let percentage = Math.floor((loaded/total) * 100);
+                        if(total == loaded && timer == null){
+
+                            timer = setInterval(() => {
+
+                             
+                               count.update(n => n = n + 1);
+
+                            }, 600);
+                        }
+                    
+                    } else {
+                        console.log(`Received ${event.loaded} bytes`); // no Content-Length
+                    }
+          };
+
+          xhr.onerror = function() {
+            alert("You're request failed try again. Use Wifi if possible.");
+          };
+
+           // 3. Send the request over the network
+          xhr.send(form);
+
     }
 
     function parseLegal(ticket) {
@@ -137,9 +238,7 @@
 
     }
     function onEnter(e){
-        if(!ticketsLoading){
-            ticketsLoading = true;
-        }
+       
         if(e.keyCode == window.ENTER){
            
            tickets = tickets.filter((e) => e.objectid.includes(searchTicket));
@@ -171,7 +270,9 @@
     function onSignature(){
         ticketsLoading = true;
         authorize = false;
-        onGenerateLetter()
+        disProgress = true;
+        generateTest();
+        //onGenerateLetter()
     }
 
     function onReadyPad() {
@@ -246,7 +347,7 @@
         </div>
         <br />
         {#if ticketsLoading}
-            <Loading />
+            <Loading progressOn={disProgress} />
         {/if}
         {#if authorize}
             <AuthorizeLetter on:loading={onLoading} on:passed={onSignature} on:invalid={onInvalid} {ticket} on:close="{(e)=>{authorize = e.dislay}}" {fname} />
