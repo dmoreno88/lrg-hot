@@ -1,6 +1,8 @@
 <script>
     import SignaturePad from "signature_pad";
+    import {PDFDocument} from 'pdf-lib';
     import {onMount, createEventDispatcher} from "svelte";
+    import {count} from "../store/stores.js";
     export let pdf = "";
     export let fname;
     export let record;
@@ -63,7 +65,6 @@
       //DOWNLOAD THE CANVAS..
        fetch(`${main}${pdf}`).then(res => {return res.arrayBuffer();}).then((buffer) => {
            bufferBytes = buffer;
-           
        })
    }
 
@@ -103,8 +104,9 @@
     }
 
     async function onGenerate(){
+        dispatch("loading", true);
         let option = this.dataset['index'];
-        console.log(option);
+        
         errorMSG = "";
         
         let Response = checkInputs();
@@ -113,14 +115,14 @@
            canvas.classList.toggle("hide")
            dispatch("loading", true);
             var form = new FormData();
-            console.log(pdf);
+            
             var jpg = pdf.replace(".pdf", ".jpg");
             form.append("pdfName", pdf);
             form.append("jpgName", jpg);
             form.append("id", record['id_ticket']);
      
         
-            pdfDoc = await PDFLib.PDFDocument.load(bufferBytes)
+            pdfDoc = await PDFDocument.load(bufferBytes)
 
              const image = signaturePad.toDataURL().split(",");
 
@@ -182,17 +184,19 @@
                     renderTask.promise.then(async function () {
                      var jpgToPDF = render.toDataURL('image/jpeg')
                      form.append("jpg64", jpgToPDF)
-                       fetch(apiLetter, {method: 'post', body: form}).then((response) => {
-                          processOptions(option, pdfDoc)
+                     finishResults(form, option, pdfDoc);
+                      //  fetch(apiLetter, {method: 'post', body: form}).then((response) => {
+                      //     processOptions(option, pdfDoc)
                           
-                          dispatch("loading", false);
-                          dispatch("done");
-                       });
+                      //     dispatch("loading", false);
+                      //     dispatch("done");
+                      //  });
 
                     });
                 });
               }, function (reason) {
                 // PDF loading error
+                alert("Couldn't process request please try again!")
                 console.error(reason);
               });
              
@@ -202,6 +206,68 @@
           setTimeout(() => {animate = false}, 800);
         }
        
+    }
+
+    function finishResults(form, option, pdfDoc){
+           count.update(n => n = 0); //Reset percentage..
+           let timer = null;
+          // 1. Create a new XMLHttpRequest object
+          let xhr = new XMLHttpRequest();
+
+          // 2. Configure it: GET-request for the URL /article/.../load
+          xhr.open('POST', apiLetter, true);
+
+         
+
+          // 4. This will be called after the response is received
+          xhr.onload = function() {
+            if (xhr.status != 200) { // analyze HTTP status of the response
+              dispatch("loading", false);
+              dispatch("done");
+              alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+               
+            } else { // show the result
+             // response is the server
+                if(timer){
+                  clearInterval(timer);
+                }
+                count.update(n => n = 100);
+
+                setTimeout(() => {
+                   processOptions(option, pdfDoc)
+                  dispatch("loading", false);
+                  dispatch("done");
+                }, 350);
+                
+            }
+          };
+
+          xhr.upload.onprogress = function(event) {
+            console.log(event);
+            if (event.lengthComputable) {
+              let loaded = event.loaded;
+              let total  = event.total;
+              let percentage = Math.floor((loaded/total) * 100);
+            
+             if(timer == null){
+               timer = setInterval(() => {
+                 count.update(n => n + 1);
+               }, 600);
+             }
+              console.log(percentage);
+              console.log(`Received ${event.loaded} of ${event.total} bytes`);
+            } else {
+              console.log(`Received ${event.loaded} bytes`); // no Content-Length
+            }
+
+          };
+
+          xhr.onerror = function() {
+            alert("You're request failed try again. Use Wifi if possible.");
+          };
+
+           // 3. Send the request over the network
+          xhr.send(form);
     }
 
    async function processOptions(option, pdfDoc){
@@ -268,10 +334,6 @@
     padding: 16px;
 }
 
-
-.hide{
-   display: none;
-}
 
 .signature-pad::before,
 .signature-pad::after {
@@ -347,7 +409,7 @@ input[type="radio"] {
   color: red !important;
 }
 
-@-webkit-keyframes glow {
+@keyframes glow {
     0% {color: rgb(163, 9, 9)}
     25% {color: rgb(78, 0, 0)}
     50% {color: rgb(163, 9, 9)}
