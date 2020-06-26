@@ -7,10 +7,12 @@
     let tries = 4;
     let error = false;
     let mobile = false;
+    let element;
 
   
     onMount(async () =>{
         mobile = window.isMobile;
+        element.scrollIntoView();
     })
 
     function fixName(name){
@@ -61,10 +63,6 @@
             }
         }
     }
-
- 
-
-   
 
 </script>
 <style>
@@ -131,7 +129,7 @@
 
     }
 </style>
-<div id="window">
+<div bind:this={element} id="window">
     <div class="hover-close">
         <button on:click={onClose} class="close">X</button>
     </div>

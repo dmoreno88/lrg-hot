@@ -23,6 +23,7 @@
     let pad = null;
     let pdf = null;
     let mobile = false;
+    let format = 'webp';
     let disProgress = false;
 
 
@@ -260,7 +261,7 @@
         record = selected;
         ticket = selected.objectid;
         fname = `${tick.cfirst_name} ${tick.clast_name}`;
-
+            
     }
 
     function onInvalid(){
@@ -343,7 +344,7 @@
      
     <div class="flex-main">
         <div class="center">
-            <img loading="lazy" class="clickable" alt="LV" src="./build/assets/carousel/location_validation.png" />
+            <img loading="lazy" on:error="{()=>{format = 'png'}}" class="clickable" alt="LV" src="./build/assets/pages/letter/ADDRESS_LETTER_STEPS_BANNER.{format}" />
         </div>
         <br />
         {#if ticketsLoading}
