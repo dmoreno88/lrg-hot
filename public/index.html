@@ -37,8 +37,8 @@
 
 	<title>E-Comms/9-1-1</title>
 	<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.min.js">
-	<link rel="preload" as="script" href="build/main-ddecd2e8.js">
-	<link rel="preload" as="script" href="build/OpenTickets-03dd97e7.js">
+	<link rel="preload" as="script" href="build/main-92ced098.js">
+	<link rel="preload" as="script" href="build/OpenTickets-ce7bba4c.js">
 	<link rel="preload" as="style" href="build/bundle.css">
 	
 	<link rel='icon' type='image/png' href='/favicon.png'>
@@ -47,9 +47,18 @@
 	
 	
 	<script>
+		var selection;
 		window.ENTER = 13;
 		window.listServers = ["911sqlsvr", "911gisweb1", "911gissvr", "911Appsvr"]
 		window.isMobile = navigator.userAgent.toLowerCase().match(/mobile/i);
+		function googleInit(){
+			selection = new google.translate.TranslateElement({pageLanguage: 'en'}, 'holder');
+		}
+
+		function rmvLang(){
+			var target = document.getElementById('gLang');
+			target.remove();
+		}
 
 	</script>
 	
@@ -58,6 +67,33 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
+	}
+
+	.loader{
+		position: relative;
+		overflow: hidden;
+		background-color: rgb(235, 235, 235);
+		border-radius: 4px;
+		margin-bottom: 4px;
+		z-index: 999;
+		border: 4px solid white;
+	}
+
+	.loader::after{
+		display: block;
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		transform: translateX(-100%);
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+		animation: loading 1s infinite;
+	}
+
+	@keyframes loading{
+		100%{
+			transform: translateX(100%);
+		}
 	}
 
 	body {
@@ -129,17 +165,59 @@ button:focus {
 			font-family: 'Signika', sans-serif !important ;
 			background-color: #f5f5f5;
 		}
+		#gLang{
+			position: absolute;
+			z-index: 10000;
+			background: white;
+			left: 50%;
+			top: 14%;
+			width: 80%;
+			height: 200px;
+			margin-left: -40%;
+			display: none;
+			
+		}
+		.mTitle{
+			background:#D9B13B;
+			color: #333;
+			text-align: center;
+			height: 32px;
+		}
+		.clsBtn{
+			float: right; height: 32px;cursor: pointer;
+			width: 24px; font-weight: bold;font-size:13px;
+			background: white; border: 1px solid black;
+		}
 	</style>
 
 </head>
 
 <body>
+	<div id='gLang'>
+		<div class="mTitle">
+			Preferred Language English/Spanish
+			<button onclick="rmvLang()" class="clsBtn">X</button>
+		</div>
+		<div id="holder" style="text-align: center;padding: 10px;">
+			
+		</div>
+	</div>
+	<div id="skeleton">
+		<div id="load" style="width: 100%; height: 100px;" class="loader"></div>
+	   <div style="position: absolute !important; background-color: rgba(20, 57, 117, 1); left: 40px; top: 20px;width: 104px; height: 104px;border-radius: 50%;z-index: 1004;" class="loader"></div>
+	   <div style="margin:0 auto; max-width: 1400px;background: white;">
+			<div style="width: 100%; height: 300px;" class="loader"></div>
+			<div style="width: 100%; height: 300px;" class="loader"></div>
+			
+		</div>
+	</div>
 	<div id="app"></div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.min.js" defer></script>
 	<link rel='stylesheet' href='build/bundle.css'>
 	<link async href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet"> 
-	<script  type="module" defer src='build/main-ddecd2e8.js'></script>
-	<!-- <script src="build/main.js"></script> -->
+	<!-- <script  type="module" defer src='build/main-92ced098.js'></script> -->
+	<script src="build/main.js"></script>
+	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleInit"></script>
 	<!-- <script onload="onLoadIcons()" type="module" defer src='build/main-0e2c9920.js'></script> -->
 </body>
 </html>
