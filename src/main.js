@@ -9,6 +9,7 @@ const Chunk = ChunkGenerator(ChunkComponent)
 
 
 const outlet = document.getElementById('app')
+const skeleton = document.getElementById('skeleton');
 window.app = crayon.create() 
 
 app.use(svelte.router(outlet))
@@ -52,3 +53,12 @@ app.path('/SignLetter', async ctx => {
 
 //Call this function below to load your app....
 app.load()
+
+//Remove the skeleton loading...
+//As well pop up the option to change language.
+if(skeleton){
+    let target = document.getElementById("gLang");
+    target.style.display = "block";
+    skeleton.remove();    
+}
+
